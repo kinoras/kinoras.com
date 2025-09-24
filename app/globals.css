@@ -1,26 +1,50 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    /* Fonts */
+    --font-sans: var(--font-latin-sans), var(--font-cjk-sans);
+    --font-mono: var(--font-latin-mono), var(--font-cjk-sans);
+
+    /* Radius */
+    --radius-sm: calc(0.625rem - 4px);
+    --radius-md: calc(0.625rem - 2px);
+    --radius-lg: 0.625rem;
+    --radius-xl: calc(0.625rem + 4px);
+
+    /* Background */
     --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --color-background-card: var(--background-card);
+
+    /* Foreground */
+    --color-theme: var(--theme);
+    --color-primary: var(--foreground);
+    --color-secondary: color-mix(in oklab, var(--foreground) 55%, transparent);
+    --color-tertiary: color-mix(in oklab, var(--foreground) 40%, transparent);
+    --color-quaternary: color-mix(in oklab, var(--foreground) 30%, transparent);
+    --color-quinary: color-mix(in oklab, var(--foreground) 22.5%, transparent);
+    --color-senary: color-mix(in oklab, var(--foreground) 10%, transparent);
+
+    /* Border */
+    --color-border: var(--color-tertiary);
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
+:root {
+    --background: var(--color-white);
+    --background-card: var(--color-white);
+
+    --foreground: var(--color-zinc-950);
+
+    --theme: #008cff;
 }
 
-body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+.dark {
+    --background: var(--color-zinc-950);
+    --background-card: var(--color-zinc-900);
+
+    --foreground: var(--color-zinc-50);
+
+    --theme: #00a2ff;
 }

@@ -16,35 +16,53 @@
 
     /* Background */
     --color-background: var(--background);
-    --color-background-card: var(--background-card);
+    --color-accent: var(--color-senary);
+    --color-card: var(--background-card);
 
     /* Foreground */
     --color-theme: var(--theme);
+    --color-danger: var(--danger);
+
     --color-primary: var(--foreground);
     --color-secondary: color-mix(in oklab, var(--foreground) 55%, transparent);
     --color-tertiary: color-mix(in oklab, var(--foreground) 40%, transparent);
     --color-quaternary: color-mix(in oklab, var(--foreground) 30%, transparent);
     --color-quinary: color-mix(in oklab, var(--foreground) 22.5%, transparent);
-    --color-senary: color-mix(in oklab, var(--foreground) 10%, transparent);
+    --color-senary: color-mix(in oklab, var(--foreground) 12.5%, transparent);
 
     /* Border */
-    --color-border: var(--color-tertiary);
+    --color-border: var(--border);
+
+    --spacing-header-height: calc(var(--spacing) * 16); /* h-16 = 64px */
 }
 
 :root {
     --background: var(--color-white);
     --background-card: var(--color-white);
 
-    --foreground: var(--color-zinc-950);
+    --foreground: var(--color-gray-950);
 
-    --theme: #008cff;
+    --border: var(--color-senary);
+
+    --theme: #00a2ff;
+    --danger: var(--color-red-500);
 }
 
 .dark {
-    --background: var(--color-zinc-950);
-    --background-card: var(--color-zinc-900);
+    --background: var(--color-gray-900);
+    --background-card: var(--color-gray-800);
 
-    --foreground: var(--color-zinc-50);
+    --foreground: var(--color-gray-50);
 
-    --theme: #00a2ff;
+    --border: var(--color-senary);
+
+    --theme: #1aabff;
+    --danger: var(--color-red-400);
+}
+
+.wrapper {
+    @apply flex justify-center;
+    .container {
+        @apply mx-6 w-full max-w-5xl transition-all sm:mx-8;
+    }
 }

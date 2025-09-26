@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { ThemeProvider } from 'next-themes'
 import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
 
+import Header from '@/components/layout/header'
+
 import { cn } from '@/lib/utils'
 
 import './globals.css'
@@ -48,6 +50,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    <Header />
                     {children}
                 </ThemeProvider>
             </body>

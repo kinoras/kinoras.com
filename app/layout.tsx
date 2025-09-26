@@ -40,7 +40,7 @@ export default function RootLayout({
                     latinSans.variable,
                     latinMono.variable,
                     cjkSans.variable,
-                    'bg-background text-primary',
+                    'bg-background text-primary font-sans',
                     'antialiased'
                 )}
             >

@@ -57,7 +57,7 @@ const PageHeader = (props: ComponentProps<typeof Header>) => {
                 </HeaderNavMenu>
             </HeaderNav>
 
-            <HeaderSeparator />
+            <HeaderSeparator className="bg-quinary" />
 
             <HeaderActions>
                 <ThemeToggle />

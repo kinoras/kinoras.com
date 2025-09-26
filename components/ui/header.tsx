@@ -22,7 +22,7 @@ const Header = ({
         <header
             data-slot="header"
             className={cn(
-                'border-border bg-background wrapper h-header-height sticky top-0',
+                'border-border bg-background wrapper h-header-height sticky top-0 z-10',
                 withBorder && 'border-b',
                 className
             )}

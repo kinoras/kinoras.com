@@ -8,12 +8,6 @@
     --font-sans: var(--font-latin-sans), var(--font-cjk-sans);
     --font-mono: var(--font-latin-mono), var(--font-cjk-sans);
 
-    /* Radius */
-    --radius-sm: calc(0.625rem - 4px);
-    --radius-md: calc(0.625rem - 2px);
-    --radius-lg: 0.625rem;
-    --radius-xl: calc(0.625rem + 4px);
-
     /* Background */
     --color-background: var(--background);
     --color-accent: var(--color-senary);
@@ -49,8 +43,8 @@
 }
 
 .dark {
-    --background: var(--color-gray-900);
-    --background-card: var(--color-gray-800);
+    --background: var(--color-gray-950);
+    --background-card: var(--color-gray-900);
 
     --foreground: var(--color-gray-50);
 

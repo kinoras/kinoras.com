@@ -10,6 +10,7 @@
         "prettier-plugin-tailwindcss"
     ],
     "importOrder": [
+        "server-only",
         "^react(/.*)?$",
         "^next(-.*|/.*)?$",
         "<THIRD_PARTY_MODULES>",

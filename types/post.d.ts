@@ -18,7 +18,7 @@ export type PostsQueryParameters = {
 
 export type PostsQueryResponse = {
     data: Post[]
-    nextCursor?: string
+    nextCursor: string | null
 }
 
 // export type PostContent = ...

@@ -56,7 +56,7 @@ export const getPosts = async ({
 
     return {
         data: posts,
-        nextCursor: response.next_cursor ?? undefined
+        nextCursor: response.next_cursor
     }
 }
 

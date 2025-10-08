@@ -10,7 +10,6 @@ import type {
     NotionPageMultiSelect,
     NotionPageRichText,
     NotionPageTitle,
-    NotionPageURL,
     NotionPageUniqueId
 } from '@/types/notion'
 import type {
@@ -29,7 +28,7 @@ type NotionPostProperties = {
     Title: NotionPageTitle
     Description: NotionPageRichText
     Tags: NotionPageMultiSelect
-    Project: NotionPageURL
+    Project: NotionPageRichText
     Date: NotionPageDate
 }
 
@@ -49,6 +48,8 @@ export const getPosts = async ({
         page_size: limit
     })
 
+    console.log(JSON.stringify(response.results))
+
     // Process results
     const posts = response.results
         .filter(isFullPage) // Mainly for ensuring type safety
@@ -61,16 +62,17 @@ export const getPosts = async ({
 }
 
 const notionPagetoPost = (notionPage: NotionPostPage): Post => {
-    const { created_time, properties } = notionPage
+    const { icon, created_time, properties } = notionPage
     const { ID, Cover, Title, Description, Tags, Project, Date } = properties
 
     return {
         id: PropertyExtractor.number(ID)!,
-        cover: PropertyExtractor.files(Cover)[0],
-        title: PropertyExtractor.title(Title) ?? '',
-        description: PropertyExtractor.richText(Description) ?? '',
+        icon: PropertyExtractor.emoji(icon),
+        cover: PropertyExtractor.files(Cover)[0] ?? null,
+        title: PropertyExtractor.title(Title),
+        description: PropertyExtractor.richText(Description),
         tags: PropertyExtractor.multiSelect(Tags),
-        project: PropertyExtractor.url(Project) ?? undefined,
+        project: PropertyExtractor.richText(Project),
         publishAt: PropertyExtractor.date(Date) ?? dayjs(created_time).unix()
     }
 }

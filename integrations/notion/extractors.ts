@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import type { Anchor, File, Option } from '@/types/common'
 import type {
     NotionFile,
+    NotionPageIcon,
     NotionPageProperty,
     NotionRichText,
     NotionSelect
@@ -28,12 +29,42 @@ export class PropertyExtractor {
         return { href: prop.url }
     }
 
+    static emoji(icon?: NotionPageIcon): string | null {
+        if (!icon || icon.type !== 'emoji') return null
+        return icon.emoji
+    }
+
     // Media...
     static files(prop?: NotionPageProperty): File[] {
         if (prop?.type !== 'files') return []
         return prop.files
             .map(normalizeFile)
             .filter((file): file is File => file !== null)
+    }
+
+    static icon(icon?: NotionPageIcon): string | File | null {
+        if (!icon) return null
+        switch (icon.type) {
+            case 'emoji':
+                return icon.emoji // Consider `emoji()` for unicode emoji only
+            case 'file':
+                return normalizeFile({
+                    type: 'file',
+                    name: icon.file.url,
+                    file: icon.file
+                })
+            case 'external':
+                return normalizeFile({
+                    type: 'external',
+                    name: icon.external.url,
+                    external: icon.external
+                })
+            case 'custom_emoji':
+                return {
+                    name: icon.custom_emoji.name,
+                    url: icon.custom_emoji.url
+                }
+        }
     }
 
     // Options...

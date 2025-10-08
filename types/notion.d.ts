@@ -14,6 +14,7 @@ export type NotionPageEntry<
 }
 
 // Specific property types
+export type NotionPageIcon = PageObjectResponse['icon']
 export type NotionPageTitle = NotionPageProperties['title']
 export type NotionPageFiles = NotionPageProperties['files']
 export type NotionPageRichText = NotionPageProperties['rich_text']

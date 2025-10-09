@@ -37,4 +37,7 @@ const BlogsPage = () => {
     )
 }
 
+// export const revalidate = 30
+export const dynamic = 'force-dynamic' // Disable caching (instant updates)
+
 export default BlogsPage

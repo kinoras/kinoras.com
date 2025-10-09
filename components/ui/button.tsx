@@ -14,7 +14,8 @@ const buttonVariants = cva(
                 default: 'bg-primary text-primary hover:bg-primary/90',
                 danger: 'bg-danger hover:bg-danger/90 focus-visible:ring-danger/20 dark:focus-visible:ring-danger/40 dark:bg-danger/60 text-white',
                 outline: 'hover:bg-accent border-border border shadow-xs',
-                secondary: 'bg-secondary text-secondary hover:bg-secondary/80',
+                secondary:
+                    'bg-float/50 dark:bg-float/70 text-primary hover:bg-float',
                 ghost: 'hover:bg-accent/50 dark:hover:bg-accent',
                 link: 'text-primary underline-offset-4 hover:underline'
             },

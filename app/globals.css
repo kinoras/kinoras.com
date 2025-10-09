@@ -12,6 +12,7 @@
     --color-background: var(--background);
     --color-accent: var(--color-senary);
     --color-card: var(--background-card);
+    --color-float: var(--background-float);
 
     /* Foreground */
     --color-theme: var(--theme);
@@ -33,6 +34,7 @@
 :root {
     --background: var(--color-white);
     --background-card: var(--color-white);
+    --background-float: var(--color-gray-200);
 
     --foreground: var(--color-gray-950);
 
@@ -45,6 +47,7 @@
 .dark {
     --background: var(--color-gray-950);
     --background-card: var(--color-gray-900);
+    --background-float: var(--color-gray-700);
 
     --foreground: var(--color-gray-50);
 

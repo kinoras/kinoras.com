@@ -14,7 +14,22 @@ import { cn } from '@/lib/utils'
 
 import type { Post } from '@/types/post'
 
+// Apply description style for date
 const FeedDate = FeedDescription
+
+// Export block styles for skeleton
+export const blockStyles = {
+    media: cn(
+        'col-start-9 col-end-13 md:col-start-10', // Grid layout
+        'aspect-4/3 sm:aspect-3/2 md:aspect-video', // Aspect ratio
+        'rounded-xl sm:rounded-2xl' // Radius
+    ),
+    meta: cn(
+        'col-start-1 col-end-9 row-start-1 self-center md:col-end-10', // Grid layout
+        'flex flex-col gap-1.5 sm:gap-2' // Inner flex-box
+    ),
+    root: 'grid grid-cols-12 gap-x-4 sm:gap-x-6 lg:gap-x-8' // Grid-box
+}
 
 const BlogsPostEntry = ({
     post: { id, cover, title, description, project, publishAt }
@@ -22,25 +37,14 @@ const BlogsPostEntry = ({
     post: Post
 }) => {
     return (
-        <FeedEntry className="grid grid-cols-12 gap-x-4 sm:gap-x-6 lg:gap-x-8">
-            <FeedMedia
-                className={cn(
-                    'col-start-9 col-end-13 md:col-start-10', // Layout
-                    'aspect-4/3 sm:aspect-3/2 md:aspect-video', // Ratio
-                    'rounded-xl sm:rounded-2xl' // Radius
-                )}
-            >
+        <FeedEntry className={blockStyles.root}>
+            <FeedMedia className={blockStyles.media}>
                 {cover && (
                     <img className="size-full object-cover" src={cover?.url} />
                 )}
             </FeedMedia>
 
-            <div
-                className={cn(
-                    'col-start-1 col-end-9 row-start-1 self-center md:col-end-10', // Layout
-                    'flex flex-col gap-1.5 sm:gap-2' // Flexbox
-                )}
-            >
+            <div className={blockStyles.meta}>
                 <FeedTitle className="line-clamp-2 sm:line-clamp-1">
                     <Link href={`/blogs/${id}`}>{title}</Link>
                 </FeedTitle>

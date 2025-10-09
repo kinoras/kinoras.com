@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/banner'
 
 import BlogsPosts from './_post'
+import BlogsPostSkeleton from './_post/skeleton'
 
 const BlogsPage = () => {
     return (
@@ -29,7 +30,7 @@ const BlogsPage = () => {
                     icon={IconMessage}
                 />
             </Banner>
-            <Suspense fallback="Loading...">
+            <Suspense fallback={<BlogsPostSkeleton length={2} />}>
                 <BlogsPosts />
             </Suspense>
         </main>

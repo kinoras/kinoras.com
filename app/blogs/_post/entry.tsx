@@ -40,7 +40,11 @@ const BlogsPostEntry = ({
         <FeedEntry className={blockStyles.root}>
             <FeedMedia className={blockStyles.media}>
                 {cover && (
-                    <img className="size-full object-cover" src={cover?.url} />
+                    <img
+                        className="size-full object-cover"
+                        src={cover.url}
+                        alt={title ?? cover.name}
+                    />
                 )}
             </FeedMedia>
 

@@ -10,7 +10,7 @@ import {
 
 const HomeBanner = () => {
     return (
-        <Banner className="bg-theme/7.5 transition-all">
+        <Banner className="bg-theme/10 transition-all">
             <BannerContent>
                 <BannerTitle className="text-[min(11vw,_48px)] whitespace-nowrap transition-all duration-400">
                     Hello,

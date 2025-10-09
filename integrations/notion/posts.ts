@@ -48,8 +48,6 @@ export const getPosts = async ({
         page_size: limit
     })
 
-    console.log(JSON.stringify(response.results))
-
     // Process results
     const posts = response.results
         .filter(isFullPage) // Mainly for ensuring type safety

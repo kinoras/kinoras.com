@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { IconMessage } from '@tabler/icons-react'
 
 import {
@@ -7,6 +9,8 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
+
+import BlogsPosts from './_post'
 
 const BlogsPage = () => {
     return (
@@ -25,6 +29,9 @@ const BlogsPage = () => {
                     icon={IconMessage}
                 />
             </Banner>
+            <Suspense fallback="Loading...">
+                <BlogsPosts />
+            </Suspense>
         </main>
     )
 }

@@ -16,5 +16,3 @@ export const COLOR_MAP: Record<NotionSelectColor, Color | undefined> = {
     pink: 'pink',
     red: 'red'
 } as const
-
-export const POST_DATASOURCE_ID = process.env.NOTION_DATASOURCE_ID

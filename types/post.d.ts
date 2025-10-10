@@ -1,7 +1,8 @@
 import type { File, Option } from './common'
 
 export type PostId = number
-export type Post = {
+
+export type PostData = {
     id: PostId
     /** Cover image of the post. */
     cover: File | null
@@ -19,14 +20,18 @@ export type Post = {
     publishAt: number
 }
 
-export type PostsQueryParameters = {
+export type PostService = {
+    getList: (options?: Partial<PostListQueryOptions>) => Promise<PostListQueryResponse>
+}
+
+type PostListQueryOptions = {
     order: 'ascending' | 'descending'
     cursor: string
     limit: number
 }
 
-export type PostsQueryResponse = {
-    data: Post[]
+type PostListQueryResponse = {
+    posts: PostData[]
     nextCursor: string | null
 }
 

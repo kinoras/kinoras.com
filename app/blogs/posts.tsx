@@ -14,7 +14,7 @@ import {
 
 import { cn } from '@/lib/utils'
 
-import { getPosts } from '@/integrations/notion/posts'
+import { Post } from '@/integrations/notion/post'
 
 // Export block styles for skeleton
 export const blockStyles = {
@@ -31,7 +31,7 @@ export const blockStyles = {
 }
 
 const BlogsPosts = async () => {
-    const { data: posts } = await getPosts()
+    const { posts } = await Post.getList()
 
     return (
         <FeedSection>

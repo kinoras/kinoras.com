@@ -3,41 +3,21 @@ import 'server-only'
 import { isFullPage } from '@notionhq/client'
 import dayjs from 'dayjs'
 
-import type {
-    NotionPageDate,
-    NotionPageEntry,
-    NotionPageFiles,
-    NotionPageMultiSelect,
-    NotionPageRichText,
-    NotionPageTitle,
-    NotionPageUniqueId
-} from '@/types/notion'
-import type { Post, PostsQueryParameters, PostsQueryResponse } from '@/types/post'
+import { notion } from '@/integrations/notion/client'
+import { PropertyExtractor } from '@/integrations/notion/extractors'
+import type { PostData, PostService } from '@/types/post'
 
-import { notion } from './client'
-import { POST_DATASOURCE_ID } from './consts'
-import { PropertyExtractor } from './extractors'
+import { DATASOURCE_ID } from './index'
+import type { NotionPostPage } from './type'
 
-type NotionPostProperties = {
-    ID: NotionPageUniqueId
-    Cover: NotionPageFiles
-    Title: NotionPageTitle
-    Description: NotionPageRichText
-    Tags: NotionPageMultiSelect
-    Project: NotionPageRichText
-    Date: NotionPageDate
-}
-
-type NotionPostPage = NotionPageEntry<NotionPostProperties>
-
-export const getPosts = async ({
+export const getPostList: PostService['getList'] = async ({
     order = 'descending',
     limit = 100,
     cursor
-}: Partial<PostsQueryParameters> = {}): Promise<PostsQueryResponse> => {
+} = {}) => {
     // Retrieve posts
-    const response = await notion.dataSources.query({
-        data_source_id: POST_DATASOURCE_ID!,
+    const { results, next_cursor } = await notion.dataSources.query({
+        data_source_id: DATASOURCE_ID!,
         filter: { property: 'Status', status: { equals: 'Public' } }, // Query only public posts
         sorts: [{ property: 'Date', direction: order }],
         start_cursor: cursor,
@@ -45,20 +25,20 @@ export const getPosts = async ({
     })
 
     // Process results
-    const posts = response.results
+    const posts = results
         .filter(isFullPage) // Mainly for ensuring type safety
         .map(notionPagetoPost)
 
-    return {
-        data: posts,
-        nextCursor: response.next_cursor
-    }
+    return { posts, nextCursor: next_cursor }
 }
 
-const notionPagetoPost = (notionPage: NotionPostPage): Post => {
+// Convert notion page response object to page-data entry
+const notionPagetoPost = (notionPage: NotionPostPage): PostData => {
+    // Extract properties
     const { icon, created_time, properties } = notionPage
     const { ID, Cover, Title, Description, Tags, Project, Date } = properties
 
+    // Extract notion properties
     return {
         id: PropertyExtractor.number(ID)!,
         icon: PropertyExtractor.emoji(icon),

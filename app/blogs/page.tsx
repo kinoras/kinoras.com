@@ -10,8 +10,8 @@ import {
     BannerTitle
 } from '@/components/ui/banner'
 
-import BlogsPosts from './_post'
-import BlogsPostSkeleton from './_post/skeleton'
+import BlogsPosts from './posts'
+import BlogsPostSkeleton from './posts-skeleton'
 
 const BlogsPage = () => {
     return (

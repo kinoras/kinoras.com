@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 import { cn } from '@/lib/utils'
 
-import { blockStyles } from './entry'
+import { blockStyles } from './posts'
 
 const BlogsPostSkeleton = ({ length = 3 }: { length?: number }) => {
     return (

@@ -28,10 +28,7 @@ const Header = ({
             )}
             {...restProps}
         >
-            <div
-                data-slot="header-container"
-                className="container flex items-center"
-            >
+            <div data-slot="header-container" className="container flex items-center">
                 {children}
             </div>
         </header>
@@ -39,12 +36,7 @@ const Header = ({
 }
 
 const HeaderNav = ({ className, ...restProps }: ComponentProps<'nav'>) => {
-    return (
-        <nav
-            className={cn('flex flex-1 items-center', className)}
-            {...restProps}
-        />
-    )
+    return <nav className={cn('flex flex-1 items-center', className)} {...restProps} />
 }
 
 const HeaderNavMenu = ({
@@ -139,11 +131,7 @@ const HeaderActionButton = ({
         <Button
             data-slot="header-action-item"
             variant="ghost"
-            className={cn(
-                'h-10 cursor-pointer rounded-full',
-                iconOnly && 'w-10',
-                className
-            )}
+            className={cn('h-10 cursor-pointer rounded-full', iconOnly && 'w-10', className)}
             {...restProps}
         />
     )

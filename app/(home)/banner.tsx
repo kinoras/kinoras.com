@@ -1,16 +1,11 @@
 import { memo } from 'react'
 
 import RotatingWords from '@/components/custom/rotating-words'
-import {
-    Banner,
-    BannerContent,
-    BannerDescription,
-    BannerTitle
-} from '@/components/ui/banner'
+import { Banner, BannerContent, BannerDescription, BannerTitle } from '@/components/ui/banner'
 
 const HomeBanner = () => {
     return (
-        <Banner className="bg-theme/7.5 transition-all">
+        <Banner className="bg-theme/10 transition-all">
             <BannerContent>
                 <BannerTitle className="text-[min(11vw,_48px)] whitespace-nowrap transition-all duration-400">
                     Hello,
@@ -28,9 +23,8 @@ const HomeBanner = () => {
                     </RotatingWords>
                 </BannerTitle>
                 <BannerDescription className="w-11/12 max-w-3xl md:text-balance">
-                    A full-stack developer with expertise in
-                    React&nbsp;and&nbsp;Express, with experience in
-                    Vue,&nbsp;PHP&nbsp;and&nbsp;database.
+                    A full-stack developer with expertise in React&nbsp;and&nbsp;Express, with
+                    experience in Vue,&nbsp;PHP&nbsp;and&nbsp;database.
                 </BannerDescription>
             </BannerContent>
         </Banner>

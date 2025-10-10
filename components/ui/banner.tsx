@@ -1,5 +1,7 @@
 import type { ComponentProps } from 'react'
 
+import { Icon } from '@tabler/icons-react'
+
 import { cn } from '@/lib/utils'
 
 const Banner = ({ className, ...props }: ComponentProps<'section'>) => {
@@ -69,6 +71,38 @@ const BannerBackground = ({ className, ...props }: ComponentProps<'div'>) => {
     )
 }
 
+const BannerIconBackground = ({
+    icon: BackgroundIcon,
+    stroke = 0.75,
+    opacity = 0.1,
+    className,
+    ...props
+}: ComponentProps<typeof BannerBackground> & {
+    icon: Icon
+    stroke?: number
+    opacity?: number
+}) => {
+    return (
+        <BannerBackground
+            className="container flex w-auto! items-center justify-end"
+            style={{ insetInline: 'max(calc((100vw - 1088px) / 2), 0px)' }}
+            {...props}
+        >
+            <BackgroundIcon
+                className={cn(
+                    'text-theme inset-y-0 right-0',
+                    'size-44 translate-x-5',
+                    'sm:size-48 sm:translate-x-5.5',
+                    'md:size-56 md:translate-x-6',
+                    className
+                )}
+                style={{ opacity }}
+                stroke={stroke}
+            />
+        </BannerBackground>
+    )
+}
+
 const BannerGridBackground = ({
     color = 'var(--color-theme)',
     gap = 24,
@@ -123,5 +157,6 @@ export {
     BannerDescription,
     BannerDotBackground,
     BannerGridBackground,
+    BannerIconBackground,
     BannerTitle
 }

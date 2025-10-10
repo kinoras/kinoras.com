@@ -43,8 +43,7 @@ const RotatingWords = ({
 
         const rotateInterval = setInterval(() => {
             setCurrentIndex((prevIndex) => {
-                if (prevIndex === Children.count(children) - 2)
-                    setCompleted(true)
+                if (prevIndex === Children.count(children) - 2) setCompleted(true)
                 return prevIndex + 1
             })
         }, interval)

@@ -24,7 +24,7 @@ const BlogsPostSkeleton = ({ length = 3 }: { length?: number }) => {
                             <Skeleton className="h-4 w-11/12" />
                             <Skeleton className="h-4 w-4/5 sm:w-3/4 md:w-2/3" />
                             {/* Project */}
-                            <Skeleton className="mb:0! mt-1.5 h-6 w-38" />
+                            <Skeleton className="mb-0! mt-1.5 h-6 w-38" />
                         </div>
                     </FeedEntry>
                 ))}

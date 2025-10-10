@@ -38,8 +38,8 @@ export class PropertyExtractor {
     static files(prop?: NotionPageProperty): File[] {
         if (prop?.type !== 'files') return []
         return prop.files
-            .map(normalizeFile)
-            .filter((file): file is File => file !== null)
+            .map(normalizeFile) // Convert to the unified structure
+            .filter((file): file is File => file !== null) // Remove the invalid ones
     }
 
     static icon(icon?: NotionPageIcon): string | File | null {

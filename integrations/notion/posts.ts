@@ -12,11 +12,7 @@ import type {
     NotionPageTitle,
     NotionPageUniqueId
 } from '@/types/notion'
-import type {
-    Post,
-    PostsQueryParameters,
-    PostsQueryResponse
-} from '@/types/post'
+import type { Post, PostsQueryParameters, PostsQueryResponse } from '@/types/post'
 
 import { notion } from './client'
 import { POST_DATASOURCE_ID } from './consts'

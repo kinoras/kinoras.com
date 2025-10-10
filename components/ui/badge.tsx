@@ -10,8 +10,7 @@ const badgeVariants = cva(
     {
         variants: {
             variant: {
-                default:
-                    'border-transparent bg-primary text-primary [a&]:hover:bg-primary/90',
+                default: 'border-transparent bg-primary text-primary [a&]:hover:bg-primary/90',
                 secondary:
                     'border-transparent bg-float/50 dark:bg-float/75 text-primary [a&]:hover:bg-float',
                 danger: 'border-transparent bg-danger text-white [a&]:hover:bg-danger/90 focus-visible:ring-danger/20 dark:focus-visible:ring-danger/40 dark:bg-danger/60',
@@ -30,8 +29,7 @@ const Badge = ({
     variant,
     asChild = false,
     ...props
-}: ComponentProps<'span'> &
-    VariantProps<typeof badgeVariants> & { asChild?: boolean }) => {
+}: ComponentProps<'span'> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) => {
     const Comp = asChild ? Slot : 'span'
 
     return (

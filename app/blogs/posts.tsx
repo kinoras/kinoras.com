@@ -36,45 +36,38 @@ const BlogsPosts = async () => {
     return (
         <FeedSection>
             <FeedList>
-                {posts.map(
-                    ({ id, cover, title, description, project, publishAt }) => (
-                        <FeedEntry key={id} className={blockStyles.root}>
-                            {/* Media block */}
-                            <FeedMedia className={blockStyles.media}>
-                                {cover && (
-                                    <img
-                                        className="size-full object-cover"
-                                        src={cover.url}
-                                        alt={title ?? cover.name}
-                                    />
-                                )}
-                            </FeedMedia>
+                {posts.map(({ id, cover, title, description, project, publishAt }) => (
+                    <FeedEntry key={id} className={blockStyles.root}>
+                        {/* Media block */}
+                        <FeedMedia className={blockStyles.media}>
+                            {cover && (
+                                <img
+                                    className="size-full object-cover"
+                                    src={cover.url}
+                                    alt={title ?? cover.name}
+                                />
+                            )}
+                        </FeedMedia>
 
-                            {/* Meta block */}
-                            <div className={blockStyles.meta}>
-                                {/* Title */}
-                                <FeedTitle className="line-clamp-2 sm:line-clamp-1">
-                                    <Link href={`/blogs/${id}`}>{title}</Link>
-                                </FeedTitle>
-                                {/* Date */}
-                                <FeedDescription className="text-sm">
-                                    {dayjs.unix(publishAt).format('DD/MM/YYYY')}
-                                </FeedDescription>
-                                {/* Description */}
-                                <FeedDescription className="line-clamp-3 sm:line-clamp-2">
-                                    {description}
-                                </FeedDescription>
-                                {/* Project */}
-                                {project && (
-                                    <RepoBadge
-                                        className="mt-1"
-                                        repo={project}
-                                    />
-                                )}
-                            </div>
-                        </FeedEntry>
-                    )
-                )}
+                        {/* Meta block */}
+                        <div className={blockStyles.meta}>
+                            {/* Title */}
+                            <FeedTitle className="line-clamp-2 sm:line-clamp-1">
+                                <Link href={`/blogs/${id}`}>{title}</Link>
+                            </FeedTitle>
+                            {/* Date */}
+                            <FeedDescription className="text-sm">
+                                {dayjs.unix(publishAt).format('DD/MM/YYYY')}
+                            </FeedDescription>
+                            {/* Description */}
+                            <FeedDescription className="line-clamp-3 sm:line-clamp-2">
+                                {description}
+                            </FeedDescription>
+                            {/* Project */}
+                            {project && <RepoBadge className="mt-1" repo={project} />}
+                        </div>
+                    </FeedEntry>
+                ))}
             </FeedList>
         </FeedSection>
     )

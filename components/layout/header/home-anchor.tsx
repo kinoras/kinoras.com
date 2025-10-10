@@ -13,13 +13,7 @@ const HomeAnchor = () => {
                 'drop-shadow-[0_0_12px] drop-shadow-transparent hover:drop-shadow-sky-400/75' // Hovering style
             )}
         >
-            <Image
-                src="/kinoras.svg"
-                className="ml-px"
-                width={24}
-                height={24}
-                alt="kinoRAS"
-            />
+            <Image src="/kinoras.svg" className="ml-px" width={24} height={24} alt="kinoRAS" />
         </Link>
     )
 }

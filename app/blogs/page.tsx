@@ -25,10 +25,7 @@ const BlogsPage = () => {
                         I document the development process of my projects here.
                     </BannerDescription>
                 </BannerContent>
-                <BannerIconBackground
-                    className="hidden sm:block"
-                    icon={IconMessage}
-                />
+                <BannerIconBackground className="hidden sm:block" icon={IconMessage} />
             </Banner>
             <Suspense fallback={<BlogsPostSkeleton length={2} />}>
                 <BlogsPosts />

@@ -7,9 +7,10 @@ export type NotionPageProperties = {
 }
 
 // Page response entry with custom properties
-export type NotionPageEntry<
-    TProperties extends Record<string, NotionPageProperty>
-> = Omit<PageObjectResponse, 'properties'> & {
+export type NotionPageEntry<TProperties extends Record<string, NotionPageProperty>> = Omit<
+    PageObjectResponse,
+    'properties'
+> & {
     properties: Partial<TProperties>
 }
 

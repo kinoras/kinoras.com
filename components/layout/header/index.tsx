@@ -6,11 +6,7 @@ import type { ComponentProps } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 
-import {
-    IconCode,
-    IconMessage,
-    IconUserSquareRounded
-} from '@tabler/icons-react'
+import { IconCode, IconMessage, IconUserSquareRounded } from '@tabler/icons-react'
 
 import {
     Header,

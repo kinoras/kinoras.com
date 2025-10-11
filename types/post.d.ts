@@ -22,6 +22,7 @@ export type PostData = {
 
 export type PostService = {
     getList: (options?: Partial<PostListQueryOptions>) => Promise<PostListQueryResponse>
+    getContent: (id: PostId) => Promise<string>
 }
 
 type PostListQueryOptions = {

@@ -15,8 +15,9 @@ export type NotionPageEntry<TProperties extends Record<string, NotionPagePropert
 }
 
 // Specific property types
+export type NotionPageId = PageObjectResponse['id'] // Page-level
 export type NotionPageIcon = PageObjectResponse['icon']
-export type NotionPageTitle = NotionPageProperties['title']
+export type NotionPageTitle = NotionPageProperties['title'] // Property-level
 export type NotionPageFiles = NotionPageProperties['files']
 export type NotionPageRichText = NotionPageProperties['rich_text']
 export type NotionPageSelect = NotionPageProperties['select']

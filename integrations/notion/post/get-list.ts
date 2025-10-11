@@ -10,6 +10,12 @@ import type { PostData, PostService } from '@/types/post'
 import { DATASOURCE_ID } from './index'
 import type { NotionPostPage } from './type'
 
+/**
+ * Query a list of post data objects from the Notion data source.
+ *
+ * @param options - Query parameters.
+ * @returns Promise that resolves to an object containing the list of posts and next cursor.
+ */
 export const getPostList: PostService['getList'] = async ({
     order = 'descending',
     limit = 100,
@@ -32,7 +38,12 @@ export const getPostList: PostService['getList'] = async ({
     return { posts, nextCursor: next_cursor }
 }
 
-// Convert notion page response object to page-data entry
+/**
+ * Convert notion page response object to page-data entry.
+ *
+ * @param notionPage - The original page object from the Notion API response.
+ * @returns A converted page data entry.
+ */
 const notionPagetoPost = (notionPage: NotionPostPage): PostData => {
     // Extract properties
     const { icon, created_time, properties } = notionPage

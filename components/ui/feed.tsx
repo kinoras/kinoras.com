@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { cn } from '@/lib/utils'
 
-const FeedSection = ({ className, children, ...props }: ComponentProps<'section'>) => {
+const Feed = ({ className, children, ...props }: ComponentProps<'section'>) => {
     return (
         <section data-slot="newsfeed" className={cn('wrapper', className)} {...props}>
             <div data-slot="newsfeed-container" className="container">
@@ -71,4 +71,4 @@ const FeedDescription = ({ className, ...props }: ComponentProps<'p'>) => {
     )
 }
 
-export { FeedDescription, FeedEntry, FeedList, FeedMedia, FeedSection, FeedTitle }
+export { Feed, FeedDescription, FeedEntry, FeedList, FeedMedia, FeedTitle }

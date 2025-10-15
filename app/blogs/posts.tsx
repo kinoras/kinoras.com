@@ -52,7 +52,7 @@ const BlogsPosts = async () => {
                         {/* Meta block */}
                         <div className={blockStyles.meta}>
                             {/* Title */}
-                            <FeedTitle className="line-clamp-2 sm:line-clamp-1">
+                            <FeedTitle className="proportional line-clamp-2 sm:line-clamp-1">
                                 <Link href={`/blogs/${id}`}>{title}</Link>
                             </FeedTitle>
                             {/* Date */}

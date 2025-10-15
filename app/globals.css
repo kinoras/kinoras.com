@@ -63,3 +63,9 @@
         @apply mx-6 w-full max-w-5xl transition-all sm:mx-8;
     }
 }
+
+/* Typography */
+
+.proportional {
+    font-feature-settings: 'palt'; /* Proportional alternative widths */
+}

@@ -38,7 +38,7 @@
 
     --foreground: var(--color-gray-950);
 
-    --border: var(--color-senary);
+    --border: var(--color-gray-200);
 
     --theme: #00a2ff;
     --danger: var(--color-red-500);
@@ -51,7 +51,7 @@
 
     --foreground: var(--color-gray-50);
 
-    --border: var(--color-senary);
+    --border: var(--color-gray-800);
 
     --theme: #1aabff;
     --danger: var(--color-red-400);
@@ -60,7 +60,7 @@
 .wrapper {
     @apply flex justify-center;
     .container {
-        @apply mx-6 w-full max-w-5xl transition-all sm:mx-8;
+        @apply w-full max-w-5xl px-6 transition-all sm:px-8;
     }
 }
 
@@ -68,4 +68,58 @@
 
 .proportional {
     font-feature-settings: 'palt'; /* Proportional alternative widths */
+}
+
+.passage {
+    overflow-x: hidden;
+
+    /* Headings */
+    h2 {
+        @apply mt-10 mb-4 text-2xl font-semibold first:mt-7 sm:text-3xl;
+        font-feature-settings: 'palt';
+    }
+    h3 {
+        @apply mt-8 mb-3.5 text-xl font-semibold sm:text-2xl;
+        font-feature-settings: 'palt';
+    }
+    h4 {
+        @apply mt-6 mb-3 text-lg font-semibold sm:text-xl;
+        font-feature-settings: 'palt';
+    }
+
+    /* Text */
+    p {
+        @apply text-primary/95 mb-5 leading-relaxed;
+    }
+    a {
+        @apply text-theme font-medium transition-all hover:brightness-95 dark:hover:brightness-105;
+        @apply decoration-theme underline-offset-3 hover:underline;
+    }
+    blockquote {
+        @apply border-border mt-6 border-l-2 pl-4 italic;
+    }
+    strong {
+        @apply text-primary font-semibold;
+    }
+
+    /* List */
+    ul {
+        @apply my-4 list-disc pl-6;
+    }
+    ol {
+        @apply my-4 list-decimal pl-6;
+    }
+    li {
+        @apply mt-2 leading-relaxed;
+    }
+
+    /* Code */
+    code.code-inline {
+        @apply bg-float/50 dark:bg-float/70 rounded-md px-1.5 py-0.5 font-mono! text-[15px] font-medium;
+    }
+
+    /* Other */
+    hr {
+        @apply border-border my-6 sm:my-8 lg:my-10;
+    }
 }

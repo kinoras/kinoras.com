@@ -1,8 +1,17 @@
+'use client'
+
 import type { ComponentProps } from 'react'
 
+import 'katex/dist/katex.min.css'
 import Markdown from 'react-markdown'
+import rehypeKatex from 'rehype-katex'
+import rehypeUnwrapImages from 'rehype-unwrap-images'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 
 import { cn } from '@/lib/utils'
+
+import SyntaxHighlighter from '../custom/syntax-highlighter'
 
 const Passage = ({ className, ...props }: ComponentProps<'article'>) => {
     return (
@@ -48,12 +57,36 @@ const PassageBody = ({ content, ...props }: ComponentProps<'div'>) => {
     return (
         <div className="passage" {...props}>
             <Markdown
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex, rehypeUnwrapImages]}
                 components={{
                     a: ({ node, ...props }) => (
                         <a target="_blank" rel="noopener noreferrer nofollow" {...props} />
                     ),
-                    code: ({ node, className, ...props }) => (
-                        <code className={cn('code-inline font-mono', className)} {...props} />
+
+                    code: ({ node, children, ...props }) => {
+                        const code = String(children).trim()
+                        const match = props.className?.match(/language-(\w+)/)
+                        const language = match?.[1]
+
+                        return language ? (
+                            <SyntaxHighlighter code={code} language={language} {...props} />
+                        ) : (
+                            <code {...props}>{children}</code> // Plain code if can't determine language
+                        )
+                    },
+
+                    img: ({ node, alt, ...props }) => (
+                        <figure>
+                            <img alt={alt} {...props} />
+                            {alt && <figcaption>{alt}</figcaption>}
+                        </figure>
+                    ),
+
+                    table: ({ node, ...props }) => (
+                        <div className="table-container">
+                            <table {...props} />
+                        </div>
                     )
                 }}
             >

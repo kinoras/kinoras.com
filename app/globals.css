@@ -57,6 +57,8 @@
     --danger: var(--color-red-400);
 }
 
+/* Layout */
+
 .wrapper {
     @apply flex justify-center;
     .container {
@@ -75,15 +77,15 @@
 
     /* Headings */
     h2 {
-        @apply mt-10 mb-4 text-2xl font-semibold first:mt-7 sm:text-3xl;
+        @apply mt-10 mb-4 text-2xl font-semibold first:mt-3 sm:text-3xl;
         font-feature-settings: 'palt';
     }
     h3 {
-        @apply mt-8 mb-3.5 text-xl font-semibold sm:text-2xl;
+        @apply mt-8 mb-3.5 text-xl font-semibold first:mt-2 sm:text-2xl;
         font-feature-settings: 'palt';
     }
     h4 {
-        @apply mt-6 mb-3 text-lg font-semibold sm:text-xl;
+        @apply mt-6 mb-3 text-lg font-semibold first:mt-1 sm:text-xl;
         font-feature-settings: 'palt';
     }
 
@@ -114,8 +116,46 @@
     }
 
     /* Code */
-    code.code-inline {
-        @apply bg-float/50 dark:bg-float/70 rounded-md px-1.5 py-0.5 font-mono! text-[15px] font-medium;
+    pre {
+        @apply bg-transparent!;
+        &:not(&:has(pre)) {
+            @apply bg-float/40! mb-5 overflow-x-auto rounded-lg px-4! py-3!; /* Only applied to deepest-level if nested */
+        }
+    }
+    code {
+        @apply font-mono! text-[15px] leading-normal font-normal;
+        &:not(pre *) {
+            @apply bg-float/40 dark:bg-float/50 rounded-md px-1.5 py-0.5; /* Inline code */
+        }
+    }
+
+    /* Image */
+    figure {
+        @apply mb-5 flex flex-col gap-2 pt-1;
+    }
+    img {
+        @apply bg-accent/50 border-border max-h-[75vh] self-start rounded-lg border;
+    }
+    figcaption {
+        @apply text-secondary text-sm leading-relaxed;
+    }
+
+    /* Table */
+    .table-container {
+        @apply border-border mb-5 overflow-x-auto rounded-lg border;
+    }
+    table {
+        @apply w-full table-auto caption-bottom;
+    }
+    thead > tr {
+        @apply bg-float/40 dark:bg-float/50 border-border border-b **:font-semibold;
+    }
+    tbody > tr {
+        @apply border-border not-last:border-b;
+    }
+    th,
+    td {
+        @apply px-4 py-2 text-left tabular-nums [&[align=center]]:text-center [&[align=right]]:text-right;
     }
 
     /* Other */

@@ -1,5 +1,3 @@
-'use client'
-
 import type { ComponentProps } from 'react'
 
 import 'katex/dist/katex.min.css'
@@ -9,9 +7,25 @@ import rehypeUnwrapImages from 'rehype-unwrap-images'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
-import { cn } from '@/lib/utils'
+import {
+    Anchor,
+    BlockCode,
+    Blockquote,
+    Figure,
+    Heading1,
+    Heading2,
+    Heading3,
+    Heading4,
+    HorizontalRule,
+    InlineCode,
+    OrderedList,
+    Paragraph,
+    Strong,
+    Table,
+    UnorderedList
+} from '@/components/ui/typography'
 
-import SyntaxHighlighter from '../custom/syntax-highlighter'
+import { cn } from '@/lib/utils'
 
 const Passage = ({ className, ...props }: ComponentProps<'article'>) => {
     return (
@@ -41,28 +55,27 @@ const PassageHeader = ({ className, ...props }: ComponentProps<'div'>) => {
 }
 
 const PassageTitle = ({ className, ...props }: ComponentProps<'h1'>) => {
-    return (
-        <h1
-            data-slot="passage-title"
-            className={cn(
-                'text-3xl leading-[1.3] font-medium tracking-tight sm:text-4xl md:text-[42px]', // Font
-                className
-            )}
-            {...props}
-        />
-    )
+    return <Heading1 data-slot="passage-title" className={cn('my-0', className)} {...props} />
 }
 
 const PassageBody = ({ content, ...props }: ComponentProps<'div'>) => {
     return (
-        <div className="passage" {...props}>
+        <div className="overflow-x-hidden" {...props}>
             <Markdown
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex, rehypeUnwrapImages]}
                 components={{
-                    a: ({ node, ...props }) => (
-                        <a target="_blank" rel="noopener noreferrer nofollow" {...props} />
-                    ),
+                    h1: ({ node, ...props }) => <Heading2 {...props} />,
+                    h2: ({ node, ...props }) => <Heading3 {...props} />,
+                    h3: ({ node, ...props }) => <Heading4 {...props} />,
+
+                    p: ({ node, ...props }) => <Paragraph {...props} />,
+                    a: ({ node, ...props }) => <Anchor {...props} />,
+                    strong: ({ node, ...props }) => <Strong {...props} />,
+                    blockquote: ({ node, ...props }) => <Blockquote {...props} />,
+
+                    ul: ({ node, ...props }) => <UnorderedList {...props} />,
+                    ol: ({ node, ...props }) => <OrderedList {...props} />,
 
                     code: ({ node, children, ...props }) => {
                         const code = String(children).trim()
@@ -70,24 +83,22 @@ const PassageBody = ({ content, ...props }: ComponentProps<'div'>) => {
                         const language = match?.[1]
 
                         return language ? (
-                            <SyntaxHighlighter code={code} language={language} {...props} />
+                            <BlockCode code={code} language={language} {...props} />
                         ) : (
-                            <code {...props}>{children}</code> // Plain code if can't determine language
+                            <InlineCode {...props}>{children}</InlineCode>
                         )
                     },
 
                     img: ({ node, alt, ...props }) => (
-                        <figure>
+                        <Figure>
                             <img alt={alt} {...props} />
-                            {alt && <figcaption>{alt}</figcaption>}
-                        </figure>
+                            <figcaption>{alt}</figcaption>
+                        </Figure>
                     ),
+                    
+                    table: ({ node, ...props }) => <Table {...props} />,
 
-                    table: ({ node, ...props }) => (
-                        <div className="table-container">
-                            <table {...props} />
-                        </div>
-                    )
+                    hr: ({ node, ...props }) => <HorizontalRule {...props} />
                 }}
             >
                 {content}

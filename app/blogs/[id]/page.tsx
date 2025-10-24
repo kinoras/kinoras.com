@@ -9,14 +9,16 @@ import { Post } from '@/integrations/notion/post'
 
 const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
-    const [main, passage] = await Promise.all([
+    const [meta, content] = await Promise.all([
         Post.getSingle(parseInt(id)),
         Post.getContent(parseInt(id))
     ])
 
-    if (!main || passage === null) {
+    if (!meta || content === null) {
         notFound()
     }
+
+    const { title, publishAt } = meta
 
     return (
         <main>
@@ -25,13 +27,13 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                     <span className="text-secondary">
                         <Link href="/blogs">Blogs</Link> /
                     </span>
-                    <PassageTitle className="proportional">{main.title}</PassageTitle>
+                    <PassageTitle>{title}</PassageTitle>
                     <span className="text-secondary">
-                        {dayjs.unix(main.publishAt).format('DD/MM/YYYY')}
+                        {dayjs.unix(publishAt).format('DD/MM/YYYY')}
                     </span>
                 </PassageHeader>
 
-                <PassageBody content={passage} />
+                <PassageBody content={content} />
             </Passage>
         </main>
     )

@@ -7,9 +7,12 @@ import { useTheme } from 'next-themes'
 
 import { ShikiHighlighter } from 'react-shiki'
 
+import { cn } from '@/lib/utils'
+
 const SyntaxHighlighter = ({
     code,
     language,
+    className,
     ...restProps
 }: ComponentProps<'code'> & {
     code: string
@@ -27,6 +30,8 @@ const SyntaxHighlighter = ({
             showLineNumbers={lineCount >= 10}
             showLanguage={false}
             addDefaultStyles={false}
+            // Styling
+            className={cn('[&>pre]:bg-transparent!', className)}
             {...restProps}
         >
             {code}

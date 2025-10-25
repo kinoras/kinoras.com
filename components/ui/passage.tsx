@@ -46,7 +46,7 @@ const PassageHeader = ({ className, ...props }: ComponentProps<'div'>) => {
             className={cn(
                 'mb-6 py-6 sm:mb-7 sm:py-7 md:mb-8 md:py-8', // Spacing
                 'border-border border-b', // Border
-                'flex flex-col gap-3 sm:gap-4', // Layout
+                'flex flex-col gap-4 sm:gap-5', // Layout
                 className
             )}
             {...props}

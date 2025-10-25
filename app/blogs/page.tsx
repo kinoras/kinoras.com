@@ -1,5 +1,7 @@
 import { Suspense } from 'react'
 
+import { Metadata } from 'next'
+
 import { IconMessage } from '@tabler/icons-react'
 
 import {
@@ -12,6 +14,11 @@ import {
 
 import BlogsPosts from './posts'
 import BlogsPostSkeleton from './posts-skeleton'
+
+export const metadata: Metadata = {
+    title: 'Blogs',
+    description: 'I document the development process of my projects here.',
+}
 
 const BlogsPage = () => {
     return (
@@ -34,7 +41,6 @@ const BlogsPage = () => {
     )
 }
 
-// export const revalidate = 30
-export const dynamic = 'force-dynamic' // Disable caching (instant updates)
+export const dynamic = 'force-dynamic'
 
 export default BlogsPage

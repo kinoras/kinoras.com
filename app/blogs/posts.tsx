@@ -4,17 +4,17 @@ import dayjs from 'dayjs'
 
 import RepoBadge from '@/components/custom/repo-badge'
 import {
+    Feed,
     FeedDescription,
     FeedEntry,
     FeedList,
     FeedMedia,
-    FeedSection,
     FeedTitle
 } from '@/components/ui/feed'
 
 import { cn } from '@/lib/utils'
 
-import { getPosts } from '@/integrations/notion/posts'
+import { Post } from '@/integrations/notion/post'
 
 // Export block styles for skeleton
 export const blockStyles = {
@@ -31,10 +31,10 @@ export const blockStyles = {
 }
 
 const BlogsPosts = async () => {
-    const { data: posts } = await getPosts()
+    const { posts } = await Post.getList()
 
     return (
-        <FeedSection>
+        <Feed>
             <FeedList>
                 {posts.map(({ id, cover, title, description, project, publishAt }) => (
                     <FeedEntry key={id} className={blockStyles.root}>
@@ -52,7 +52,7 @@ const BlogsPosts = async () => {
                         {/* Meta block */}
                         <div className={blockStyles.meta}>
                             {/* Title */}
-                            <FeedTitle className="line-clamp-2 sm:line-clamp-1">
+                            <FeedTitle className="proportional line-clamp-2 sm:line-clamp-1">
                                 <Link href={`/blogs/${id}`}>{title}</Link>
                             </FeedTitle>
                             {/* Date */}
@@ -69,7 +69,7 @@ const BlogsPosts = async () => {
                     </FeedEntry>
                 ))}
             </FeedList>
-        </FeedSection>
+        </Feed>
     )
 }
 

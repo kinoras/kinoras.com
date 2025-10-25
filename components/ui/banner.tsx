@@ -52,7 +52,7 @@ const BannerDescription = ({ className, ...props }: ComponentProps<'p'>) => {
         <p
             data-slot="banner-description"
             className={cn(
-                'text-primary/50 leading-snug!', // Text styles
+                'text-secondary leading-snug!', // Text styles
                 'text-md sm:text-lg', // Font size
                 className
             )}

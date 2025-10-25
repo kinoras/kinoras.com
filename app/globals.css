@@ -38,7 +38,7 @@
 
     --foreground: var(--color-gray-950);
 
-    --border: var(--color-senary);
+    --border: var(--color-gray-200);
 
     --theme: #00a2ff;
     --danger: var(--color-red-500);
@@ -51,15 +51,23 @@
 
     --foreground: var(--color-gray-50);
 
-    --border: var(--color-senary);
+    --border: var(--color-gray-800);
 
     --theme: #1aabff;
     --danger: var(--color-red-400);
 }
 
+/* Layout */
+
 .wrapper {
     @apply flex justify-center;
     .container {
-        @apply mx-6 w-full max-w-5xl transition-all sm:mx-8;
+        @apply w-full max-w-5xl px-6 transition-all sm:px-8;
     }
+}
+
+/* Typography */
+
+.proportional {
+    font-feature-settings: 'palt'; /* Proportional alternative widths */
 }

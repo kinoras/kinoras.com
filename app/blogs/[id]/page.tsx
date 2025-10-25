@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -7,7 +8,9 @@ import { Passage, PassageBody, PassageHeader, PassageTitle } from '@/components/
 
 import { Post } from '@/integrations/notion/post'
 
-const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+type BlogPageProps = { params: Promise<{ id: string }> }
+
+const BlogPage = async ({ params }: BlogPageProps) => {
     const { id } = await params
     const [meta, content] = await Promise.all([
         Post.getSingle(parseInt(id)),
@@ -37,6 +40,16 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             </Passage>
         </main>
     )
+}
+
+export const generateMetadata = async ({ params }: BlogPageProps): Promise<Metadata> => {
+    const { id } = await params
+    const meta = await Post.getSingle(parseInt(id))
+
+    return {
+        title: meta?.title,
+        description: meta?.description
+    }
 }
 
 // export const revalidate = 30

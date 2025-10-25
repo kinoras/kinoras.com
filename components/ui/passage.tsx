@@ -95,7 +95,6 @@ const PassageBody = ({ content, ...props }: ComponentProps<'div'>) => {
                             <figcaption>{alt}</figcaption>
                         </Figure>
                     ),
-                    
                     table: ({ node, ...props }) => <Table {...props} />,
 
                     hr: ({ node, ...props }) => <HorizontalRule {...props} />

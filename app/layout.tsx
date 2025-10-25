@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { ThemeProvider } from 'next-themes'
 import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
 
+import LoadingProgress from 'nextjs-toploader'
+
 import Header from '@/components/layout/header'
 
 import { cn } from '@/lib/utils'
@@ -53,6 +55,13 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    <LoadingProgress
+                        height={2}
+                        color="var(--color-theme)"
+                        shadow={false}
+                        zIndex={20}
+                        showSpinner={false}
+                    />
                     <Header />
                     {children}
                 </ThemeProvider>

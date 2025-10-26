@@ -18,10 +18,10 @@ import type { NotionPostPage } from './type'
  */
 export const notionPageToPost = (notionPage: NotionPostPage): PostData => {
     const { icon, created_time, properties } = notionPage
-    const { ID, Cover, Title, Description, Tags, Project, Date } = properties
+    const { Slug, Cover, Title, Description, Tags, Project, Date } = properties
 
     return {
-        id: PropertyExtractor.number(ID)!,
+        id: PropertyExtractor.richText(Slug) ?? '',
         icon: PropertyExtractor.emoji(icon),
         cover: PropertyExtractor.files(Cover)[0] ?? null,
         title: PropertyExtractor.title(Title),
@@ -45,7 +45,7 @@ export const findPageWithPostId = async (
         data_source_id: DATASOURCE_ID!,
         filter: {
             and: [
-                { property: 'ID', unique_id: { equals: postId } }, // Search with the ID field
+                { property: 'Slug', rich_text: { equals: postId } }, // Search with the ID field
                 { property: 'Status', status: { equals: 'Public' } } // Query only public posts
             ]
         }

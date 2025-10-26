@@ -11,6 +11,7 @@ import type {
 // Post-data entry: Notion storage properties
 type NotionPostProperties = {
     ID: NotionPageUniqueId
+    Slug: NotionPageRichText
     Cover: NotionPageFiles
     Title: NotionPageTitle
     Description: NotionPageRichText

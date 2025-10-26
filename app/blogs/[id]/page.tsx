@@ -15,7 +15,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
     return (
         <main>
             <Suspense fallback={<BlogPostSkeleton length={4} />}>
-                <BlogPost id={parseInt(id)} />
+                <BlogPost id={id} />
             </Suspense>
         </main>
     )
@@ -23,7 +23,7 @@ const BlogPage = async ({ params }: BlogPageProps) => {
 
 export const generateMetadata = async ({ params }: BlogPageProps): Promise<Metadata> => {
     const { id } = await params
-    const meta = await Post.getSingle(parseInt(id))
+    const meta = await Post.getSingle(id)
 
     return {
         title: meta?.title,

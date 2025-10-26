@@ -1,6 +1,6 @@
 import type { File, Option } from './common'
 
-export type PostId = number
+export type PostId = string
 
 export type PostData = {
     id: PostId

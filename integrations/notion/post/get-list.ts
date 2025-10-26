@@ -19,22 +19,29 @@ export const getPostList: PostService['getList'] = async ({
     limit = 100,
     cursor
 } = {}) => {
-    // Retrieve posts
-    const { results, next_cursor } = await notion.dataSources.query({
-        data_source_id: DATASOURCE_ID!,
-        filter: { property: 'Status', status: { equals: 'Public' } }, // Query only public posts
-        sorts: [{ property: 'Date', direction: order }],
-        start_cursor: cursor,
-        page_size: limit
-    })
+    try {
+        // Retrieve posts
+        const { results, next_cursor } = await notion.dataSources.query({
+            data_source_id: DATASOURCE_ID!,
+            filter: { property: 'Status', status: { equals: 'Public' } }, // Query only public posts
+            sorts: [{ property: 'Date', direction: order }],
+            start_cursor: cursor,
+            page_size: limit
+        })
 
-    // Process results
-    const posts = results
-        .filter(isFullPage) // Mainly for ensuring type safety
-        .map(notionPageToPost)
+        // Process results
+        const posts = results
+            .filter(isFullPage) // Mainly for ensuring type safety
+            .map(notionPageToPost)
 
-    return {
-        posts,
-        nextCursor: next_cursor
+        return {
+            posts,
+            nextCursor: next_cursor
+        }
+    } catch (error) {
+        return {
+            posts: [],
+            nextCursor: null
+        }
     }
 }

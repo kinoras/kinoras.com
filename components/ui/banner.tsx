@@ -17,9 +17,9 @@ const Banner = ({ className, ...props }: ComponentProps<'section'>) => {
     )
 }
 
-const BannerContent = ({ className, ...props }: ComponentProps<'article'>) => {
+const BannerContent = ({ className, ...props }: ComponentProps<'div'>) => {
     return (
-        <article
+        <div
             data-slot="banner-content"
             className={cn(
                 'container',
@@ -61,6 +61,19 @@ const BannerDescription = ({ className, ...props }: ComponentProps<'p'>) => {
     )
 }
 
+const BannerBar = ({ className, ...props }: ComponentProps<'span'>) => {
+    return (
+        <span
+            className={cn(
+                'bg-theme/85 h-1 w-8 sm:w-10',
+                'mt-6 -mb-6 sm:mt-8 md:mt-10', // Vertical spacing
+                className
+            )}
+            {...props}
+        />
+    )
+}
+
 const BannerBackground = ({ className, ...props }: ComponentProps<'div'>) => {
     return (
         <div
@@ -85,7 +98,7 @@ const BannerIconBackground = ({
     return (
         <BannerBackground
             className="container flex w-auto! items-center justify-end"
-            style={{ insetInline: 'max(calc((100vw - 1088px) / 2), 0px)' }}
+            style={{ insetInline: 'max(calc((100vw - 1024px) / 2), 0px)' }}
             {...props}
         >
             <BackgroundIcon
@@ -153,6 +166,7 @@ const BannerDotBackground = ({
 export {
     Banner,
     BannerBackground,
+    BannerBar,
     BannerContent,
     BannerDescription,
     BannerDotBackground,

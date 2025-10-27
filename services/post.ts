@@ -2,13 +2,11 @@ import 'server-only'
 
 import { unstable_cache } from 'next/cache'
 
+import { getPostContent } from '@/integrations/notion/post/get-content'
+import { getPostList } from '@/integrations/notion/post/get-list'
+import { getSinglePost } from '@/integrations/notion/post/get-single'
+
 import type { PostService } from '@/types/post'
-
-import { getPostContent } from './get-content'
-import { getPostList } from './get-list'
-import { getSinglePost } from './get-single'
-
-export const DATASOURCE_ID = process.env.NOTION_DATASOURCE_ID
 
 export const Post: PostService = {
     getList: (options) =>

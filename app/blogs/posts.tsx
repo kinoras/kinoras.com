@@ -15,7 +15,7 @@ import {
 
 import { cn } from '@/lib/utils'
 
-import { Post } from '@/integrations/notion/post'
+import { Post } from '@/services/post'
 
 // Export block styles for skeleton
 export const blockStyles = {

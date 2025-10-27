@@ -7,8 +7,9 @@ import RepoBadge from '@/components/custom/repo-badge'
 import { Badge } from '@/components/ui/badge'
 import { Passage, PassageBody, PassageHeader, PassageTitle } from '@/components/ui/passage'
 
-import { Post } from '@/integrations/notion/post'
-import { PostId } from '@/types/post'
+import { Post } from '@/services/post'
+
+import type { PostId } from '@/types/post'
 
 const BlogPost = async ({ id }: { id: PostId }) => {
     const [meta, content] = await Promise.all([Post.getSingle(id), Post.getContent(id)])

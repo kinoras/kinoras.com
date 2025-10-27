@@ -3,10 +3,10 @@ import 'server-only'
 import { isFullPage } from '@notionhq/client'
 
 import { notion } from '@/integrations/notion/client'
+
 import type { PostService } from '@/types/post'
 
-import { DATASOURCE_ID } from './index'
-import { notionPageToPost } from './utils'
+import { DATASOURCE_ID, notionPageToPost } from './utils'
 
 /**
  * Query a list of post data objects from the Notion data source.

@@ -4,11 +4,13 @@ import { type PageObjectResponse, isFullPage } from '@notionhq/client'
 import dayjs from 'dayjs'
 
 import { PropertyExtractor } from '@/integrations/notion/extractors'
+
 import type { PostData, PostId } from '@/types/post'
 
 import { notion } from '../client'
-import { DATASOURCE_ID } from './index'
 import type { NotionPostPage } from './type'
+
+export const DATASOURCE_ID = process.env.NOTION_DATASOURCE_ID
 
 /**
  * Convert notion page response object to page-data entry.

@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { Metadata } from 'next'
 
-import { Post } from '@/integrations/notion/post'
+import { Post } from '@/services/post'
 
 import BlogPost from './post'
 import BlogPostSkeleton from './post-skeleton'

@@ -10,7 +10,7 @@ import type { PostData, PostId } from '@/types/post'
 import { notion } from '../client'
 import type { NotionPostPage } from './type'
 
-export const DATASOURCE_ID = process.env.NOTION_DATASOURCE_ID
+export const BLOGS_DATASOURCE_ID = process.env.NOTION_BLOGS_DATASOURCE_ID
 
 /**
  * Convert notion page response object to page-data entry.
@@ -44,7 +44,7 @@ export const findPageWithPostId = async (
     postId: PostId
 ): Promise<PageObjectResponse | null> => {
     const { results } = await notion.dataSources.query({
-        data_source_id: DATASOURCE_ID!,
+        data_source_id: BLOGS_DATASOURCE_ID!,
         filter: {
             and: [
                 { property: 'Slug', rich_text: { equals: postId } }, // Search with the ID field

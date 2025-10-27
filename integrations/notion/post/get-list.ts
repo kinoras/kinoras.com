@@ -6,7 +6,7 @@ import { notion } from '@/integrations/notion/client'
 
 import type { PostService } from '@/types/post'
 
-import { DATASOURCE_ID, notionPageToPost } from './utils'
+import { BLOGS_DATASOURCE_ID, notionPageToPost } from './utils'
 
 /**
  * Query a list of post data objects from the Notion data source.
@@ -22,7 +22,7 @@ export const getPostList: PostService['getList'] = async ({
     try {
         // Retrieve posts
         const { results, next_cursor } = await notion.dataSources.query({
-            data_source_id: DATASOURCE_ID!,
+            data_source_id: BLOGS_DATASOURCE_ID!,
             filter: { property: 'Status', status: { equals: 'Public' } }, // Query only public posts
             sorts: [{ property: 'Date', direction: order }],
             start_cursor: cursor,

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import RepoBadge from '@/components/custom/repo-badge'
+import { Badge } from '@/components/ui/badge'
 import { Passage, PassageBody, PassageHeader, PassageTitle } from '@/components/ui/passage'
 
 import { Post } from '@/integrations/notion/post'
@@ -16,7 +17,7 @@ const BlogPost = async ({ id }: { id: PostId }) => {
         notFound()
     }
 
-    const { title, description, project, publishAt } = meta
+    const { title, description, project, tags, publishAt } = meta
 
     return (
         <Passage>
@@ -35,7 +36,16 @@ const BlogPost = async ({ id }: { id: PostId }) => {
                 <span className="text-secondary">{description}</span>
 
                 {/* Project */}
-                {project && <RepoBadge repo={project} />}
+                {(project || tags.length > 0) && (
+                    <div className="flex flex-wrap gap-2">
+                        {project && <RepoBadge repo={project} />}
+                        {tags.map((tag) => (
+                            <Badge variant="outline" key={tag.name}>
+                                {tag.name}
+                            </Badge>
+                        ))}
+                    </div>
+                )}
             </PassageHeader>
 
             {/* Content */}

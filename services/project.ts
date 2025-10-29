@@ -1,17 +1,61 @@
 import 'server-only'
 
-// import { unstable_cache } from 'next/cache'
+import { unstable_cache } from 'next/cache'
 
+import { notNull } from '@/lib/utils'
+
+import { getRepositoryInfo } from '@/integrations/github/repository'
 import { getProjectList } from '@/integrations/notion/project/get-list'
+import type { PartialProjectData } from '@/integrations/notion/project/utils'
 
-import type { ProjectService } from '@/types/project'
+import type { ProjectData, ProjectService } from '@/types/project'
 
 export const Project: ProjectService = {
-    getList: async (options) => {
-        const { projects, nextCursor } = await getProjectList(options)
-        return {
-            projects: projects,
-            nextCursor
-        }
+    getList: (options) =>
+        unstable_cache(
+            async () => {
+                try {
+                    // Retrieve projects from Notion
+                    const { projects, nextCursor } = await getProjectList(options)
+
+                    // Fetch repository properties from GitHub
+                    const hydratedProjects = await Promise.all(projects.map(hydrateProject))
+
+                    return {
+                        projects: hydratedProjects.filter(notNull), // Get rid of non-hydratable projects
+                        nextCursor
+                    }
+                } catch (error) {
+                    return { projects: [], nextCursor: null }
+                }
+            }, // Fetcher
+            ['projects', JSON.stringify(options || {})], // Key
+            { revalidate: 600, tags: ['projects'] } // TTL (10 min) & tags
+        )()
+}
+
+const hydrateProject = async (project: PartialProjectData): Promise<ProjectData | null> => {
+    // Validate project content
+    if (!project.repository) return null
+
+    // Get repository info from GitHub API
+    const repository = await getRepositoryInfo(project.repository)
+    if (!repository) return null
+
+    // Map the fields
+    return {
+        hero: project.hero,
+        name: project.name,
+        description: project.description || repository.description,
+        tags: repository.topics,
+        repository: {
+            name: repository.full_name,
+            owner: {
+                name: repository.owner.login,
+                avatar: repository.owner.avatar_url
+            },
+            url: repository.html_url
+        },
+        deployment: repository.homepage
     }
 }

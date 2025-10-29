@@ -8,10 +8,10 @@ import type { NotionProjectPage } from './type'
 
 export const PROJECTS_DATASOURCE_ID = process.env.NOTION_PROJECTS_DATASOURCE_ID
 
-export type PartialProjectData = Pick<
-    ProjectData,
-    'hero' | 'name' | 'description' | 'repository'
->
+export type PartialProjectData = Pick<ProjectData, 'hero' | 'name' | 'description'> & {
+    /* Repository full name of the project. */
+    repository: string | null
+}
 
 /**
  * Converts a Notion page entry to a PartialProjectData object.

@@ -7,8 +7,16 @@ export type ProjectData = {
     name: string
     /** Description of the project. */
     description: string | null
+    /** Tags of the project  */
+    tags: string[]
     /** The GitHub repository of the project. */
-    repository: string | null
+    repository: {
+        name: string
+        owner: { name: string; avatar: string }
+        url: string
+    }
+    /** Deployment URL */
+    deployment: string | null
 }
 
 export type ProjectService = {

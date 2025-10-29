@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 import dayjs from 'dayjs'
 
-import RepoBadge from '@/components/custom/repo-badge'
+import { RepoBadge } from '@/components/custom/anchor-badges'
 import { Badge } from '@/components/ui/badge'
 import { Passage, PassageBody, PassageHeader, PassageTitle } from '@/components/ui/passage'
 

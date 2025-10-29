@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import dayjs from 'dayjs'
 
-import RepoBadge from '@/components/custom/repo-badge'
+import { RepoBadge } from '@/components/custom/anchor-badges'
 import { Badge } from '@/components/ui/badge'
 import {
     Feed,

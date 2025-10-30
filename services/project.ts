@@ -2,6 +2,8 @@ import 'server-only'
 
 import { unstable_cache } from 'next/cache'
 
+import dayjs from 'dayjs'
+
 import { notNull } from '@/lib/utils'
 
 import { getRepositoryInfo } from '@/integrations/github/repository'
@@ -19,10 +21,13 @@ export const Project: ProjectService = {
                     const { projects, nextCursor } = await getProjectList(options)
 
                     // Fetch repository properties from GitHub
-                    const hydratedProjects = await Promise.all(projects.map(hydrateProject))
+                    const hydratedProjects = (await Promise.all(projects.map(hydrateProject)))
+                        .filter(notNull) // Exclude non-hydratable items
+                        .toSorted((a, b) => dayjs(b._date).unix() - dayjs(a._date).unix()) // Sort by creation date (newest first)
+                        .map(({ _date, ...proj }) => proj) // Remove the sorting helper property
 
                     return {
-                        projects: hydratedProjects.filter(notNull), // Get rid of non-hydratable projects
+                        projects: hydratedProjects,
                         nextCursor
                     }
                 } catch (error) {
@@ -34,7 +39,9 @@ export const Project: ProjectService = {
         )()
 }
 
-const hydrateProject = async (project: PartialProjectData): Promise<ProjectData | null> => {
+const hydrateProject = async (
+    project: PartialProjectData
+): Promise<(ProjectData & { _date: string }) | null> => {
     // Validate project content
     if (!project.repository) return null
 
@@ -56,6 +63,7 @@ const hydrateProject = async (project: PartialProjectData): Promise<ProjectData 
             },
             url: repository.html_url
         },
-        deployment: repository.homepage
+        deployment: repository.homepage,
+        _date: repository.created_at
     }
 }

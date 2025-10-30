@@ -60,5 +60,19 @@ const RepoBadge = ({
     )
 }
 
+const DemoBadge = ({
+    href,
+    className,
+    children,
+    ...restProps
+}: ComponentProps<typeof AnchorBadge>) => {
+    return (
+        <AnchorBadge href={href} {...restProps}>
+            <IconWorld className="size-4! scale-110" stroke={1.5} />
+            {children ?? href.toString()}
+        </AnchorBadge>
+    )
+}
+
 export default AnchorBadge
-export { AnchorBadge, RepoBadge }
+export { AnchorBadge, RepoBadge, DemoBadge }

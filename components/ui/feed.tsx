@@ -38,7 +38,7 @@ const FeedMedia = ({ className, ...props }: ComponentProps<'div'>) => {
             data-slot="newsfeed-entry-media"
             className={cn(
                 'bg-accent/50 overflow-hidden',
-                '[&_img,video]:transition [&_img,video]:duration-400 group-hover/feed:[&_img,video]:scale-105', // Scale the media when entry hovered
+                '[&_span,img,video]:transition [&_span,img,video]:duration-400 group-hover/feed:[&_span,img,video]:scale-105', // Scale the media when entry hovered
                 className
             )}
             {...props}

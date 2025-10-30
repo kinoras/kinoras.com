@@ -16,9 +16,9 @@ import { Project } from '@/services/project'
 
 // Export block styles for skeleton
 export const blockStyles = {
-    wrapper: 'grid grid-cols-1 gap-8 pt-7 pb-3 sm:pt-8 sm:pb-4 md:grid-cols-2', // List container
+    wrapper: 'grid grid-cols-1 gap-8 pt-7 sm:pt-8 md:grid-cols-2', // List container
     root: 'flex items-start gap-4 border-b-0! p-0!', // List entry
-    meta: 'flex flex-col gap-1 pb-1.5',
+    meta: 'flex flex-1 flex-col gap-1 pb-1.5',
     media: {
         container: 'relative shrink-0',
         avatar: 'border-border absolute -right-2 -bottom-2 z-5 size-8 rounded-full border',
@@ -55,9 +55,9 @@ const ProjectsFeedList = async ({
     const { projects } = await Project.getList({ category })
     return (
         <FeedList className={blockStyles.wrapper}>
-            {projects.map(({ hero, name, description, tags, repository, deployment }) => (
+            {projects.map(({ hero, name, description, repository, deployment }) => (
                 <FeedEntry key={name} className={blockStyles.root}>
-                    {/* Media */}
+                    {/* Media block */}
                     <div className={blockStyles.media.container}>
                         {/* Project hero */}
                         <FeedMedia className={blockStyles.media.hero}>
@@ -72,7 +72,7 @@ const ProjectsFeedList = async ({
                         )}
                     </div>
 
-                    {/* Meta */}
+                    {/* Media block */}
                     <div className={blockStyles.meta}>
                         {/* Title */}
                         <FeedTitle className="line-clamp-1">{name}</FeedTitle>
@@ -81,7 +81,7 @@ const ProjectsFeedList = async ({
                             {description}
                         </FeedDescription>
                         {/* Links */}
-                        <div className="mt-1.5 -ml-px flex gap-2">
+                        <div className="mt-1.5 flex gap-2">
                             <RepoBadge repo={repository.name}>Source</RepoBadge>
                             {deployment && <DemoBadge href={deployment}>Demo</DemoBadge>}
                         </div>

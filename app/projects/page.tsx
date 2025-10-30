@@ -18,7 +18,7 @@ import { ProjectsFeedListSkeleton } from './feed-skeleton'
 
 export const metadata: Metadata = {
     title: 'Projects',
-    description: 'I document the development process of my projects here.'
+    description: 'Here are the projects I have worked on and contributed to over time.'
 }
 
 const ProjectsPage = () => {

@@ -9,7 +9,7 @@ import type { PostService } from '@/types/post'
 import { BLOGS_DATASOURCE_ID, notionPageToPost } from './utils'
 
 /**
- * Query a list of post data objects from the Notion data source.
+ * Queries a list of blog posts from the Notion data source.
  *
  * @param options - Query parameters.
  * @returns Promise that resolves to an object containing the list of posts and next cursor.

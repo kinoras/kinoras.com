@@ -13,10 +13,10 @@ import type { NotionPostPage } from './type'
 export const BLOGS_DATASOURCE_ID = process.env.NOTION_BLOGS_DATASOURCE_ID
 
 /**
- * Convert notion page response object to page-data entry.
+ * Converts a Notion page entry to a PageData object.
  *
  * @param notionPage - The original page object from the Notion API response.
- * @returns A converted page data entry.
+ * @returns A converted PageData object.
  */
 export const notionPageToPost = (notionPage: NotionPostPage): PostData => {
     const { icon, created_time, properties } = notionPage

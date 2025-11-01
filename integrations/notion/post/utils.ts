@@ -4,24 +4,26 @@ import { type PageObjectResponse, isFullPage } from '@notionhq/client'
 import dayjs from 'dayjs'
 
 import { PropertyExtractor } from '@/integrations/notion/extractors'
+
 import type { PostData, PostId } from '@/types/post'
 
 import { notion } from '../client'
-import { DATASOURCE_ID } from './index'
 import type { NotionPostPage } from './type'
 
+export const BLOGS_DATASOURCE_ID = process.env.NOTION_BLOGS_DATASOURCE_ID
+
 /**
- * Convert notion page response object to page-data entry.
+ * Converts a Notion page entry to a PageData object.
  *
  * @param notionPage - The original page object from the Notion API response.
- * @returns A converted page data entry.
+ * @returns A converted PageData object.
  */
 export const notionPageToPost = (notionPage: NotionPostPage): PostData => {
     const { icon, created_time, properties } = notionPage
-    const { ID, Cover, Title, Description, Tags, Project, Date } = properties
+    const { Slug, Cover, Title, Description, Tags, Project, Date } = properties
 
     return {
-        id: PropertyExtractor.number(ID)!,
+        id: PropertyExtractor.richText(Slug) ?? '',
         icon: PropertyExtractor.emoji(icon),
         cover: PropertyExtractor.files(Cover)[0] ?? null,
         title: PropertyExtractor.title(Title),
@@ -42,10 +44,10 @@ export const findPageWithPostId = async (
     postId: PostId
 ): Promise<PageObjectResponse | null> => {
     const { results } = await notion.dataSources.query({
-        data_source_id: DATASOURCE_ID!,
+        data_source_id: BLOGS_DATASOURCE_ID!,
         filter: {
             and: [
-                { property: 'ID', unique_id: { equals: postId } }, // Search with the ID field
+                { property: 'Slug', rich_text: { equals: postId } }, // Search with the ID field
                 { property: 'Status', status: { equals: 'Public' } } // Query only public posts
             ]
         }

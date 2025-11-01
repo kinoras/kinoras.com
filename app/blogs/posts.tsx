@@ -2,7 +2,8 @@ import Link from 'next/link'
 
 import dayjs from 'dayjs'
 
-import RepoBadge from '@/components/custom/repo-badge'
+import { RepoBadge } from '@/components/custom/anchor-badges'
+import { Badge } from '@/components/ui/badge'
 import {
     Feed,
     FeedDescription,
@@ -14,13 +15,13 @@ import {
 
 import { cn } from '@/lib/utils'
 
-import { Post } from '@/integrations/notion/post'
+import { Post } from '@/services/post'
 
 // Export block styles for skeleton
 export const blockStyles = {
     media: cn(
         'col-start-9 col-end-13 md:col-start-10', // Grid layout
-        'aspect-4/3 sm:aspect-3/2 md:aspect-video', // Aspect ratio
+        'aspect-3/2 sm:aspect-video', // Aspect ratio
         'rounded-xl sm:rounded-2xl' // Radius
     ),
     meta: cn(
@@ -36,7 +37,7 @@ const BlogsPosts = async () => {
     return (
         <Feed>
             <FeedList>
-                {posts.map(({ id, cover, title, description, project, publishAt }) => (
+                {posts.map(({ id, cover, title, description, project, tags, publishAt }) => (
                     <FeedEntry key={id} className={blockStyles.root}>
                         {/* Media block */}
                         <FeedMedia className={blockStyles.media}>
@@ -64,7 +65,20 @@ const BlogsPosts = async () => {
                                 {description}
                             </FeedDescription>
                             {/* Project */}
-                            {project && <RepoBadge className="mt-1" repo={project} />}
+                            {(project || tags.length > 0) && (
+                                <div className="mt-1 flex flex-wrap gap-2">
+                                    {project && <RepoBadge repo={project} />}
+                                    {tags.map((tag) => (
+                                        <Badge
+                                            className="hidden sm:block" // Mobile: hide tags to reduce visual complexity
+                                            variant="outline"
+                                            key={tag.name}
+                                        >
+                                            {tag.name}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </FeedEntry>
                 ))}

@@ -1,4 +1,4 @@
-import { Feed, FeedEntry, FeedList } from '@/components/ui/feed'
+import { FeedEntry, FeedList } from '@/components/ui/feed'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { cn } from '@/lib/utils'

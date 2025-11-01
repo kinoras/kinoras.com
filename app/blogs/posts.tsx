@@ -21,7 +21,7 @@ import { Post } from '@/services/post'
 export const blockStyles = {
     media: cn(
         'col-start-9 col-end-13 md:col-start-10', // Grid layout
-        'aspect-3/2 sm:aspect-video ', // Aspect ratio
+        'aspect-3/2 sm:aspect-video', // Aspect ratio
         'rounded-xl sm:rounded-2xl' // Radius
     ),
     meta: cn(

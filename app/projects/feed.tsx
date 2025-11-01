@@ -61,13 +61,18 @@ const ProjectsFeedList = async ({
                     <div className={blockStyles.media.container}>
                         {/* Project hero */}
                         <FeedMedia className={blockStyles.media.hero}>
-                            {isFile(hero) ? <img src={hero.url} /> : <span>{hero}</span>}
+                            {isFile(hero) ? (
+                                <img src={hero.url} alt={`Hero image of ${repository.name}`} />
+                            ) : (
+                                <span>{hero}</span>
+                            )}
                         </FeedMedia>
                         {/* Owner's avatar */}
                         {showItemAvatar && (
                             <img
                                 className={blockStyles.media.avatar}
                                 src={repository.owner.avatar}
+                                alt={`Owned by ${repository.owner.name}`}
                             />
                         )}
                     </div>

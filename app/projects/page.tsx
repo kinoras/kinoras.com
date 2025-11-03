@@ -11,10 +11,11 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
+import { Section, SectionTitle } from '@/components/ui/section'
 import { Separator } from '@/components/ui/separator'
 
-import { ProjectsFeed, ProjectsFeedList } from './feed'
-import { ProjectsFeedListSkeleton } from './feed-skeleton'
+import ProjectsFeed from './feed'
+import ProjectsFeedSkeleton from './feed-skeleton'
 
 export const metadata: Metadata = {
     title: 'Projects',
@@ -26,7 +27,7 @@ const ProjectsPage = () => {
         <main>
             <Banner>
                 <BannerContent>
-                    <BannerTitle className="mb-1 -ml-[2px] text-5xl sm:mb-0 md:-ml-[3px]">
+                    <BannerTitle className="mb-1 -ml-0.5 text-5xl sm:mb-0 md:-ml-[3px]">
                         Projects
                     </BannerTitle>
                     <BannerBar />
@@ -39,25 +40,23 @@ const ProjectsPage = () => {
                 />
             </Banner>
 
-            <ProjectsFeed>
-                <h2>Personal</h2>
-                <Suspense fallback={<ProjectsFeedListSkeleton length={2} />}>
-                    <ProjectsFeedList category="Personal" showItemAvatar={false} />
+            <Section>
+                <SectionTitle className="mb-1">Personal</SectionTitle>
+                <Suspense fallback={<ProjectsFeedSkeleton length={2} />}>
+                    <ProjectsFeed category="Personal" showItemAvatar={false} />
                 </Suspense>
-            </ProjectsFeed>
+            </Section>
 
-            <div className="wrapper">
-                <div className="container py-3 sm:py-4">
-                    <Separator orientation="horizontal" />
-                </div>
-            </div>
+            <Section className="my-0! py-3 sm:py-4">
+                <Separator orientation="horizontal" />
+            </Section>
 
-            <ProjectsFeed>
-                <h2>Course</h2>
-                <Suspense fallback={<ProjectsFeedListSkeleton length={2} />}>
-                    <ProjectsFeedList category="Course" />
+            <Section>
+                <SectionTitle className="mb-1">Course</SectionTitle>
+                <Suspense fallback={<ProjectsFeedSkeleton length={2} />}>
+                    <ProjectsFeed category="Course" />
                 </Suspense>
-            </ProjectsFeed>
+            </Section>
         </main>
     )
 }

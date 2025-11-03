@@ -4,14 +4,7 @@ import dayjs from 'dayjs'
 
 import { RepoBadge } from '@/components/custom/anchor-badges'
 import { Badge } from '@/components/ui/badge'
-import {
-    Feed,
-    FeedDescription,
-    FeedEntry,
-    FeedList,
-    FeedMedia,
-    FeedTitle
-} from '@/components/ui/feed'
+import { Feed, FeedDescription, FeedEntry, FeedMedia, FeedTitle } from '@/components/ui/feed'
 
 import { cn } from '@/lib/utils'
 
@@ -36,53 +29,51 @@ const BlogsPosts = async () => {
 
     return (
         <Feed>
-            <FeedList>
-                {posts.map(({ id, cover, title, description, project, tags, publishAt }) => (
-                    <FeedEntry key={id} className={blockStyles.root}>
-                        {/* Media block */}
-                        <FeedMedia className={blockStyles.media}>
-                            {cover && (
-                                <img
-                                    className="size-full object-cover"
-                                    src={cover.url}
-                                    alt={title ?? cover.name}
-                                />
-                            )}
-                        </FeedMedia>
+            {posts.map(({ id, cover, title, description, project, tags, publishAt }) => (
+                <FeedEntry key={id} className={blockStyles.root}>
+                    {/* Media block */}
+                    <FeedMedia className={blockStyles.media}>
+                        {cover && (
+                            <img
+                                className="size-full object-cover"
+                                src={cover.url}
+                                alt={title ?? cover.name}
+                            />
+                        )}
+                    </FeedMedia>
 
-                        {/* Meta block */}
-                        <div className={blockStyles.meta}>
-                            {/* Title */}
-                            <FeedTitle className="proportional line-clamp-2 sm:line-clamp-1">
-                                <Link href={`/blogs/${id}`}>{title}</Link>
-                            </FeedTitle>
-                            {/* Date */}
-                            <FeedDescription className="text-sm">
-                                {dayjs.unix(publishAt).format('DD/MM/YYYY')}
-                            </FeedDescription>
-                            {/* Description */}
-                            <FeedDescription className="line-clamp-3 sm:line-clamp-2">
-                                {description}
-                            </FeedDescription>
-                            {/* Project */}
-                            {(project || tags.length > 0) && (
-                                <div className="mt-1 flex flex-wrap gap-2">
-                                    {project && <RepoBadge repo={project} />}
-                                    {tags.map((tag) => (
-                                        <Badge
-                                            className="hidden sm:block" // Mobile: hide tags to reduce visual complexity
-                                            variant="outline"
-                                            key={tag.name}
-                                        >
-                                            {tag.name}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </FeedEntry>
-                ))}
-            </FeedList>
+                    {/* Meta block */}
+                    <div className={blockStyles.meta}>
+                        {/* Title */}
+                        <FeedTitle className="proportional line-clamp-2 sm:line-clamp-1">
+                            <Link href={`/blogs/${id}`}>{title}</Link>
+                        </FeedTitle>
+                        {/* Date */}
+                        <FeedDescription className="text-sm">
+                            {dayjs.unix(publishAt).format('DD/MM/YYYY')}
+                        </FeedDescription>
+                        {/* Description */}
+                        <FeedDescription className="line-clamp-3 sm:line-clamp-2">
+                            {description}
+                        </FeedDescription>
+                        {/* Project */}
+                        {(project || tags.length > 0) && (
+                            <div className="mt-1 flex flex-wrap gap-2">
+                                {project && <RepoBadge repo={project} />}
+                                {tags.map((tag) => (
+                                    <Badge
+                                        className="hidden sm:block" // Mobile: hide tags to reduce visual complexity
+                                        variant="outline"
+                                        key={tag.name}
+                                    >
+                                        {tag.name}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </FeedEntry>
+            ))}
         </Feed>
     )
 }

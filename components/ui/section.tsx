@@ -20,7 +20,10 @@ const SectionTitle = ({ className, ...props }: ComponentProps<'h2'>) => {
     return (
         <h2
             data-slot="section-title"
-            className={cn('mb-6 text-3xl font-medium tracking-tight sm:text-4xl', className)}
+            className={cn(
+                'mb-7 text-3xl font-medium tracking-tight sm:mb-8 sm:text-4xl',
+                className
+            )}
             {...props}
         />
     )

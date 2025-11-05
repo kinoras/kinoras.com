@@ -41,7 +41,7 @@ const ProjectsPage = () => {
             </Banner>
 
             <Section>
-                <SectionTitle className="mb-1">Personal</SectionTitle>
+                <SectionTitle className="mb-1!">Personal</SectionTitle>
                 <Suspense fallback={<ProjectsFeedSkeleton length={2} />}>
                     <ProjectsFeed category="Personal" showItemAvatar={false} />
                 </Suspense>
@@ -52,7 +52,7 @@ const ProjectsPage = () => {
             </Section>
 
             <Section>
-                <SectionTitle className="mb-1">Course</SectionTitle>
+                <SectionTitle className="mb-1!">Course</SectionTitle>
                 <Suspense fallback={<ProjectsFeedSkeleton length={2} />}>
                     <ProjectsFeed category="Course" />
                 </Suspense>

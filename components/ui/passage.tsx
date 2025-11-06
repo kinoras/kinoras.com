@@ -58,9 +58,9 @@ const PassageTitle = ({ className, ...props }: ComponentProps<'h1'>) => {
     return <Heading1 data-slot="passage-title" className={cn('my-0', className)} {...props} />
 }
 
-const PassageBody = ({ content, ...props }: ComponentProps<'div'>) => {
+const PassageBody = ({ className, content, ...props }: ComponentProps<'div'>) => {
     return (
-        <div className="overflow-x-hidden" {...props}>
+        <div className={cn('overflow-x-hidden', className)} {...props}>
             <Markdown
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex, rehypeUnwrapImages]}

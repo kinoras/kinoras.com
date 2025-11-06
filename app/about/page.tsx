@@ -9,10 +9,12 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
+import { PassageBody } from '@/components/ui/passage'
 import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 import { Timeline, TimelineIcon, TimelineItem } from '@/components/ui/timeline'
 
 import { interests } from '@/data/about-interests'
+import { profile } from '@/data/about-profile'
 import { timeline } from '@/data/about-timeline'
 
 export const metadata: Metadata = {
@@ -35,6 +37,18 @@ const AboutPage = () => {
                     icon={IconUserSquareRounded}
                 />
             </Banner>
+
+            <Section>
+                <SectionTitle className="-ml-px">Profile</SectionTitle>
+                <article>
+                    <PassageBody
+                        className="**:leading-normal *:last:mb-1 sm:text-[17px] [&_strong]:font-medium"
+                        content={profile}
+                    />
+                </article>
+            </Section>
+
+            <SectionSeparator />
 
             <Section>
                 <SectionTitle>Timeline</SectionTitle>

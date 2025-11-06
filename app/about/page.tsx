@@ -9,9 +9,10 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
-import { Section, SectionTitle } from '@/components/ui/section'
+import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 import { Timeline, TimelineIcon, TimelineItem } from '@/components/ui/timeline'
 
+import { interests } from '@/data/about-interests'
 import { timeline } from '@/data/about-timeline'
 
 export const metadata: Metadata = {
@@ -44,6 +45,30 @@ const AboutPage = () => {
                             <h3 className="mt-px text-lg font-medium sm:text-xl">{title}</h3>
                             <span className="text-secondary text-sm">{period}</span>
                             {description && <p className="text-secondary">{description}</p>}
+                        </TimelineItem>
+                    ))}
+                </Timeline>
+            </Section>
+
+            <SectionSeparator />
+
+            <Section>
+                <SectionTitle>Interests</SectionTitle>
+                <Timeline>
+                    {interests.map(({ icon, name, items }) => (
+                        <TimelineItem variant="inclusive" key={name}>
+                            <TimelineIcon className="rounded-xl">{icon}</TimelineIcon>
+                            <h3 className="mt-px text-lg font-medium sm:text-xl">{name}</h3>
+                            <ul className="text-secondary leading-snug!">
+                                {items.map((item, index) => (
+                                    <li
+                                        className="mt-0.5 not-last:mb-1.5 after:opacity-50 sm:inline sm:not-last:after:content-['_/_']"
+                                        key={index}
+                                    >
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
                         </TimelineItem>
                     ))}
                 </Timeline>

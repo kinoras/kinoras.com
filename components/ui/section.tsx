@@ -2,6 +2,8 @@ import type { ComponentProps } from 'react'
 
 import { cn } from '@/lib/utils'
 
+import { Separator } from '../ui/separator'
+
 const Section = ({ className, children, ...props }: ComponentProps<'section'>) => {
     return (
         <section
@@ -29,4 +31,21 @@ const SectionTitle = ({ className, ...props }: ComponentProps<'h2'>) => {
     )
 }
 
-export { Section, SectionTitle }
+const SectionSeparator = ({
+    className,
+    ...restProps
+}: Omit<ComponentProps<typeof Separator>, 'orientation'>) => {
+    return (
+        <div className="wrapper">
+            <div className="container">
+                <Separator
+                    orientation="horizontal"
+                    className={cn('my-3 sm:my-4 container', className)}
+                    {...restProps}
+                />
+            </div>
+        </div>
+    )
+}
+
+export { Section, SectionTitle, SectionSeparator }

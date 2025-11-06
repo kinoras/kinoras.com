@@ -11,8 +11,7 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
-import { Section, SectionTitle } from '@/components/ui/section'
-import { Separator } from '@/components/ui/separator'
+import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 
 import ProjectsFeed from './feed'
 import ProjectsFeedSkeleton from './feed-skeleton'
@@ -47,9 +46,7 @@ const ProjectsPage = () => {
                 </Suspense>
             </Section>
 
-            <Section className="my-0! py-3 sm:py-4">
-                <Separator orientation="horizontal" />
-            </Section>
+            <SectionSeparator />
 
             <Section>
                 <SectionTitle className="mb-1!">Course</SectionTitle>

@@ -1,14 +1,7 @@
 import { ComponentProps } from 'react'
 
 import { DemoBadge, RepoBadge } from '@/components/custom/anchor-badges'
-import {
-    Feed,
-    FeedDescription,
-    FeedEntry,
-    FeedList,
-    FeedMedia,
-    FeedTitle
-} from '@/components/ui/feed'
+import { Feed, FeedDescription, FeedEntry, FeedMedia, FeedTitle } from '@/components/ui/feed'
 
 import { cn, isFile } from '@/lib/utils'
 
@@ -30,20 +23,7 @@ export const blockStyles = {
     }
 }
 
-const ProjectsFeed = ({ className, ...restProps }: ComponentProps<typeof Feed>) => {
-    return (
-        <Feed
-            className={cn(
-                'my-5 sm:my-6', // Container
-                '[&_h2]:text-3xl [&_h2]:font-medium [&_h2]:tracking-tight [&_h2]:sm:text-4xl', // Title
-                className
-            )}
-            {...restProps}
-        />
-    )
-}
-
-const ProjectsFeedList = async ({
+const ProjectsFeed = async ({
     category,
     showItemAvatar = true
 }: ComponentProps<typeof Feed> & {
@@ -54,7 +34,7 @@ const ProjectsFeedList = async ({
 }) => {
     const { projects } = await Project.getList({ category })
     return (
-        <FeedList className={blockStyles.wrapper}>
+        <Feed className={blockStyles.wrapper}>
             {projects.map(({ hero, name, description, repository, deployment }) => (
                 <FeedEntry key={name} className={blockStyles.root}>
                     {/* Media block */}
@@ -93,8 +73,8 @@ const ProjectsFeedList = async ({
                     </div>
                 </FeedEntry>
             ))}
-        </FeedList>
+        </Feed>
     )
 }
 
-export { ProjectsFeed, ProjectsFeedList }
+export default ProjectsFeed

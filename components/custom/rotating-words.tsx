@@ -53,10 +53,7 @@ const RotatingWords = ({
 
     return (
         <span
-            className={cn(
-                'relative inline-block h-[1lh] overflow-hidden align-bottom',
-                className
-            )}
+            className={cn('relative inline-block h-lh overflow-hidden align-bottom', className)}
             {...restProps}
         >
             {Children.toArray(children).map((child, index) => (

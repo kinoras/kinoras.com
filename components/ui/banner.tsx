@@ -37,7 +37,7 @@ const BannerTitle = ({ className, ...props }: ComponentProps<'h1'>) => {
         <h1
             data-slot="banner-title"
             className={cn(
-                'leading-[1.125]! tracking-tight', // Text styles
+                'leading-[1.175]! tracking-tight', // Text styles
                 'text-4xl sm:text-5xl md:text-6xl', // Font size
                 '-mt-1.5 -ml-px sm:-mt-2 sm:-ml-0.5 md:-mt-3.5', // Position
                 className

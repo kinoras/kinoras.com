@@ -35,7 +35,7 @@ export const Project: ProjectService = {
                 }
             }, // Fetcher
             ['projects', JSON.stringify(options || {})], // Key
-            { revalidate: 600, tags: ['projects'] } // TTL (10 min) & tags
+            { revalidate: 3600, tags: ['projects'] } // TTL (1 hour) & tags
         )()
 }
 

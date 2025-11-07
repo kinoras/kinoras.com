@@ -13,18 +13,18 @@ export const Post: PostService = {
         unstable_cache(
             async () => getPostList(options), // Fetcher
             ['posts', JSON.stringify(options || {})], // Key
-            { revalidate: 600, tags: ['posts'] } // TTL (10 min) & tags
+            { revalidate: 3600, tags: ['posts'] } // TTL (1 hour) & tags
         )(),
     getSingle: (id) =>
         unstable_cache(
             async () => getSinglePost(id), // Fetcher
             ['post', `${id}`], // Key
-            { revalidate: 1800, tags: ['post', `post-${id}`] } // TTL (30 min) & tags
+            { revalidate: 3600, tags: ['post', `post-${id}`] } // TTL (1 hour) & tags
         )(),
     getContent: (id) =>
         unstable_cache(
             async () => getPostContent(id), // Fetcher
             ['post-content', `${id}`], // Key
-            { revalidate: 1800, tags: ['post-content', `post-${id}`] } // TTL (30 min) & tags
+            { revalidate: 3600, tags: ['post-content', `post-${id}`] } // TTL (1 hour) & tags
         )()
 }

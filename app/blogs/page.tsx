@@ -11,6 +11,7 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
+import { Section } from '@/components/ui/section'
 
 import BlogsPosts from './posts'
 import BlogsPostSkeleton from './posts-skeleton'
@@ -25,7 +26,7 @@ const BlogsPage = () => {
         <main>
             <Banner>
                 <BannerContent>
-                    <BannerTitle className="mb-1 -ml-[2px] text-5xl sm:mb-0 md:-ml-[3px]">
+                    <BannerTitle className="mb-1 -ml-0.5 text-5xl sm:mb-0 md:-ml-[3px]">
                         Blogs
                     </BannerTitle>
                     <BannerBar />
@@ -37,9 +38,11 @@ const BlogsPage = () => {
                     icon={IconMessage}
                 />
             </Banner>
-            <Suspense fallback={<BlogsPostSkeleton length={2} />}>
-                <BlogsPosts />
-            </Suspense>
+            <Section className="my-0!">
+                <Suspense fallback={<BlogsPostSkeleton length={2} />}>
+                    <BlogsPosts />
+                </Suspense>
+            </Section>
         </main>
     )
 }

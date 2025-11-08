@@ -2,17 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { cn } from '@/lib/utils'
 
-const Feed = ({ className, children, ...props }: ComponentProps<'section'>) => {
-    return (
-        <section data-slot="newsfeed" className={cn('wrapper', className)} {...props}>
-            <div data-slot="newsfeed-container" className="container">
-                {children}
-            </div>
-        </section>
-    )
-}
-
-const FeedList = ({ ...props }: ComponentProps<'ul'>) => {
+const Feed = ({ ...props }: ComponentProps<'ul'>) => {
     return <ul data-slot="newsfeed-list" {...props} />
 }
 
@@ -71,4 +61,4 @@ const FeedDescription = ({ className, ...props }: ComponentProps<'p'>) => {
     )
 }
 
-export { Feed, FeedDescription, FeedEntry, FeedList, FeedMedia, FeedTitle }
+export { Feed, FeedDescription, FeedEntry, FeedMedia, FeedTitle }

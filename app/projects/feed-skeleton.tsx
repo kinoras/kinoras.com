@@ -1,13 +1,13 @@
-import { FeedEntry, FeedList } from '@/components/ui/feed'
+import { Feed, FeedEntry } from '@/components/ui/feed'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { cn } from '@/lib/utils'
 
 import { blockStyles } from './feed'
 
-const ProjectsFeedListSkeleton = ({ length = 3 }: { length?: number }) => {
+const ProjectsFeedSkeleton = ({ length = 3 }: { length?: number }) => {
     return (
-        <FeedList className={blockStyles.wrapper}>
+        <Feed className={blockStyles.wrapper}>
             {Array.from({ length }).map((_, index) => (
                 <FeedEntry key={index} className={blockStyles.root}>
                     {/* Media block */}
@@ -28,8 +28,8 @@ const ProjectsFeedListSkeleton = ({ length = 3 }: { length?: number }) => {
                     </div>
                 </FeedEntry>
             ))}
-        </FeedList>
+        </Feed>
     )
 }
 
-export { ProjectsFeedListSkeleton }
+export default ProjectsFeedSkeleton

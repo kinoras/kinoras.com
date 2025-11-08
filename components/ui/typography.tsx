@@ -184,7 +184,7 @@ const Table = ({
                     '[&_thead]:bg-float/40 dark:[&_thead]:bg-float/50 [&_thead_*]:font-semibold [&_thead>tr]:border-b', // Table head
                     '[&_tbody>tr]:not-last:border-b', // Table body
                     '[&_th,td]:px-4 [&_th,td]:py-2', // Cell spacing
-                    '[&_th,td]:text-left [&_th,td]:[&[align=center]]:text-center [&_th,td]:[&[align=right]]:text-right', // Cell alignment
+                    '[&_th,td]:text-left [&_th,td]:[[align=center]]:text-center [&_th,td]:[[align=right]]:text-right', // Cell alignment
                     className
                 )}
                 {...props}

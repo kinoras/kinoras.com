@@ -2,8 +2,8 @@ import type { ComponentProps } from 'react'
 
 import { cn } from '@/lib/utils'
 
-const Timeline = ({ className, ...props }: ComponentProps<'ul'>) => {
-    return <ul data-slot="timeline" className={cn('pl-5.5', className)} {...props} />
+const Timeline = ({ ...props }: ComponentProps<'ul'>) => {
+    return <ul data-slot="timeline" {...props} />
 }
 
 const TimelineItem = ({
@@ -11,18 +11,20 @@ const TimelineItem = ({
     className,
     ...props
 }: ComponentProps<'li'> & {
-    variant?: 'extensive' | 'inclusive'
+    variant?: 'extensive' | 'inclusive' | 'clear'
 }) => {
     return (
         <li
             data-slot="timeline-item"
             className={cn(
-                'border-border relative border-l pt-px pl-10',
+                'border-border relative ml-5.5 border-l pt-px pl-10',
                 'flex flex-col gap-1.5 **:leading-tight', // Inner layout
                 'before:absolute before:top-0 before:-left-1.5 before:mt-1.5 before:size-3 sm:before:mt-2', // Icon placeholder: position
                 'before:bg-border before:ring-background before:rounded-full before:ring-4', // Icon placeholder: appearance
-                variant === 'extensive' ? 'not-last:pb-8' : 'mb-4.5 pb-3.5', // Bottom border
+                variant === 'extensive' && 'not-last:pb-8',
+                variant === 'clear' && 'border-transparent not-last:pb-8',
                 variant === 'inclusive' && [
+                    'mb-4.5 pb-3.5',
                     'after:absolute after:bottom-0 after:left-0 after:h-20 after:w-8', // Pseudo element for boundary curve
                     'after:border-border after:border-b [&,&:after]:rounded-bl-xl' // Rounded inclusive border
                 ],

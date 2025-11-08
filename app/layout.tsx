@@ -4,32 +4,21 @@ import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
 
 import LoadingProgress from 'nextjs-toploader'
 
+import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 
 import { cn } from '@/lib/utils'
 
 import './globals.css'
 
-const latinSans = Geist({
-    variable: '--font-latin-sans',
-    subsets: ['latin']
-})
+// Fonts
+const latinSans = Geist({ variable: '--font-latin-sans', subsets: ['latin'] })
+const latinMono = Geist_Mono({ variable: '--font-latin-mono', subsets: ['latin'] })
+const cjkSans = Noto_Sans_JP({ variable: '--font-cjk-sans', subsets: ['latin'] })
 
-const latinMono = Geist_Mono({
-    variable: '--font-latin-mono',
-    subsets: ['latin']
-})
-
-const cjkSans = Noto_Sans_JP({
-    variable: '--font-cjk-sans',
-    subsets: ['latin']
-})
-
+// Metadata
 export const metadata: Metadata = {
-    title: {
-        template: '%s | kinoRAS',
-        default: 'kinoRAS'
-    },
+    title: { template: '%s | kinoRAS', default: 'kinoRAS' },
     description: 'I am a web developer from Macau.'
 }
 
@@ -39,13 +28,14 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="zh-tw" suppressHydrationWarning>
+        <html suppressHydrationWarning>
             <body
                 className={cn(
                     latinSans.variable,
                     latinMono.variable,
                     cjkSans.variable,
                     'bg-background text-primary font-sans',
+                    'flex min-h-svh flex-col [&>main]:flex-1',
                     'antialiased'
                 )}
             >
@@ -64,6 +54,7 @@ export default function RootLayout({
                     />
                     <Header />
                     {children}
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>

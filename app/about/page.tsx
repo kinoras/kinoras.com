@@ -9,12 +9,11 @@ import {
     BannerIconBackground,
     BannerTitle
 } from '@/components/ui/banner'
-import { PassageBody } from '@/components/ui/passage'
 import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 import { Timeline, TimelineIcon, TimelineItem } from '@/components/ui/timeline'
 
 import { interests } from '@/data/about-interests'
-import { profile } from '@/data/about-profile'
+import { tags } from '@/data/about-profile'
 import { timeline } from '@/data/about-timeline'
 
 export const metadata: Metadata = {
@@ -39,13 +38,16 @@ const AboutPage = () => {
             </Banner>
 
             <Section>
-                <SectionTitle className="-ml-px">Profile</SectionTitle>
-                <article>
-                    <PassageBody
-                        className="**:leading-normal *:last:mb-1 sm:text-[17px] [&_strong]:font-medium"
-                        content={profile}
-                    />
-                </article>
+                <SectionTitle className="-ml-px">Tags</SectionTitle>
+                <Timeline>
+                    {tags.map(({ icon, title, description }, index) => (
+                        <TimelineItem variant="clear" key={index}>
+                            <TimelineIcon className="rounded-xl">{icon}</TimelineIcon>
+                            <h3 className="mt-px text-lg font-medium sm:text-xl">{title}</h3>
+                            <p className="text-secondary">{description}</p>
+                        </TimelineItem>
+                    ))}
+                </Timeline>
             </Section>
 
             <SectionSeparator />

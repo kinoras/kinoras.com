@@ -1,12 +1,12 @@
 import RotatingWords from '@/components/custom/rotating-words'
 import { Banner, BannerBar, BannerContent, BannerTitle } from '@/components/ui/banner'
-import { PassageBody } from '@/components/ui/passage'
-import { Section, SectionTitle } from '@/components/ui/section'
+import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 
 import { profile } from '@/data/about-profile'
 import { rotatingWords } from '@/data/home-banner'
+import { work } from '@/data/home-work'
 
-import { HighlightedStrong, HomeParagraph } from './components'
+import { HomePassage } from './components'
 
 export default function Home() {
     return (
@@ -31,13 +31,16 @@ export default function Home() {
             <Section>
                 <SectionTitle>About me</SectionTitle>
                 <article>
-                    <PassageBody
-                        content={profile}
-                        maps={{
-                            p: (props) => <HomeParagraph {...props} />,
-                            strong: (props) => <HighlightedStrong {...props} />
-                        }}
-                    />
+                    <HomePassage content={profile} />
+                </article>
+            </Section>
+
+            <SectionSeparator />
+
+            <Section>
+                <SectionTitle>Words & work</SectionTitle>
+                <article>
+                    <HomePassage content={work} />
                 </article>
             </Section>
         </main>

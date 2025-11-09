@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { cacheLife, cacheTag } from 'next/cache'
+
 import { isFullPage } from '@notionhq/client'
 
 import { notion } from '@/integrations/notion/client'
@@ -19,6 +21,10 @@ export const getProjectList = async ({
     limit = 100,
     cursor
 }: Partial<ProjectListQueryOptions> = {}) => {
+    'use cache'
+    cacheLife('hours')
+    cacheTag('projects')
+
     try {
         // Retrieve projects
         const { results, next_cursor } = await notion.dataSources.query({

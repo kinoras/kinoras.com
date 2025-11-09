@@ -40,7 +40,7 @@ const SectionSeparator = ({
             <div className="container">
                 <Separator
                     orientation="horizontal"
-                    className={cn('my-3 sm:my-4 container', className)}
+                    className={cn('container my-3', className)}
                     {...restProps}
                 />
             </div>

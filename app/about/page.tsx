@@ -38,7 +38,7 @@ const AboutPage = () => {
             </Banner>
 
             <Section>
-                <SectionTitle className="-ml-px">Tags</SectionTitle>
+                <SectionTitle>Tags</SectionTitle>
                 <Timeline>
                     {tags.map(({ icon, title, description }, index) => (
                         <TimelineItem variant="clear" key={index}>
@@ -68,7 +68,7 @@ const AboutPage = () => {
 
             <SectionSeparator />
 
-            <Section>
+            <Section className="mb-2 sm:mb-3">
                 <SectionTitle>Interests</SectionTitle>
                 <Timeline>
                     {interests.map(({ icon, name, items }) => (

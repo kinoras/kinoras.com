@@ -60,13 +60,22 @@ const Paragraph = ({ className, ...props }: ComponentProps<'p'>) => {
     return <p className={cn('text-primary/95 mb-5 leading-relaxed', className)} {...props} />
 }
 
-const Anchor = ({ className, target, rel, ...props }: ComponentProps<'a'>) => {
+const Anchor = ({
+    styled = true,
+    className,
+    ...props
+}: ComponentProps<'a'> & {
+    /** Whether to apply preset styles. */
+    styled?: boolean
+}) => {
     return (
         <a
             className={cn(
-                'text-theme font-medium transition-all',
-                'hover:brightness-95 dark:hover:brightness-105', // Highlight on hover
-                'decoration-theme underline-offset-3 hover:underline', // Underline on hover
+                styled && [
+                    'text-theme font-medium transition-all',
+                    'hover:brightness-95 dark:hover:brightness-105', // Highlight on hover
+                    'decoration-theme underline-offset-3 hover:underline' // Underline on hover
+                ],
                 className
             )}
             target="_blank"

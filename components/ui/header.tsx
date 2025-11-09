@@ -64,9 +64,8 @@ const HeaderNavLink = ({
     title,
     active = false,
     className,
-    children,
     ...restProps
-}: ComponentProps<typeof Link> & {
+}: Omit<ComponentProps<typeof Link>, 'children'> & {
     icon?: [icon: Icon, size?: number]
     title: string
     active?: boolean

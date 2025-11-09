@@ -30,7 +30,6 @@ const AnchorBadge = ({
 const RepoBadge = ({
     href,
     repo,
-    className,
     children,
     ...restProps
 }: Omit<ComponentProps<typeof AnchorBadge>, 'href'> & {
@@ -62,7 +61,6 @@ const RepoBadge = ({
 
 const DemoBadge = ({
     href,
-    className,
     children,
     ...restProps
 }: ComponentProps<typeof AnchorBadge>) => {

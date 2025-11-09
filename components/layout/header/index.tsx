@@ -18,6 +18,8 @@ import {
     HeaderSeparator
 } from '@/components/ui/header'
 
+import { cn } from '@/lib/utils'
+
 import HomeAnchor from './home-anchor'
 
 const ThemeToggle = dynamic(() => import('./theme-toggle'), {
@@ -25,10 +27,13 @@ const ThemeToggle = dynamic(() => import('./theme-toggle'), {
     loading: () => <HeaderActionButtonFallback />
 })
 
-const PageHeader = (props: ComponentProps<typeof Header>) => {
+const PageHeader = ({ className, ...props }: ComponentProps<typeof Header>) => {
     const pathname = usePathname()
     return (
-        <Header {...props}>
+        <Header
+            className={cn('supports-backdrop-filter:bg-background/75 backdrop-blur', className)}
+            {...props}
+        >
             <HeaderNav>
                 <HomeAnchor />
                 <HeaderNavMenu alignment="right">

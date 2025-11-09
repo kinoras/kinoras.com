@@ -4,6 +4,7 @@ import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section
 
 import { profile } from '@/data/about-profile'
 import { rotatingWords } from '@/data/home-banner'
+import { contact } from '@/data/home-contact'
 import { work } from '@/data/home-work'
 
 import { HomePassage } from './components'
@@ -41,6 +42,15 @@ export default function Home() {
                 <SectionTitle>Words & work</SectionTitle>
                 <article>
                     <HomePassage content={work} />
+                </article>
+            </Section>
+
+            <SectionSeparator />
+
+            <Section>
+                <SectionTitle>Get in touch</SectionTitle>
+                <article>
+                    <HomePassage content={contact} />
                 </article>
             </Section>
         </main>

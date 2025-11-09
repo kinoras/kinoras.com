@@ -14,7 +14,7 @@ export default function Home() {
         <main>
             <Banner className="transition-all">
                 <BannerContent>
-                    <BannerTitle className="text-[min(11vw,48px)] whitespace-nowrap transition-all duration-400">
+                    <BannerTitle className="py-4 text-[min(11vw,48px)] leading-[1.2]! whitespace-nowrap transition-all duration-400">
                         Hello,
                         <br />
                         I&nbsp;

@@ -11,7 +11,7 @@ const PageFooter = ({ className, ...props }: ComponentProps<'footer'>) => {
         <footer className={cn('wrapper border-border mt-6 border-t', className)} {...props}>
             <div className="container">
                 <div className="flex items-center justify-between py-6">
-                    <span className="text-secondary">© 2025 kinoRAS</span>
+                    <span className="text-secondary text-[15px]">© 2025 kinoRAS</span>
                     <ul className="flex items-center gap-5 sm:gap-5">
                         {links.map(({ icon: LinkIcon, href, title }) => (
                             <li key={href}>

@@ -33,7 +33,9 @@ export const profile: string = `
 Born and brought up in **🇲🇴 Macau**.
 Currently based in **🇹🇼 Taipei, Taiwan**.
 
-A **🧑🏻‍💻 full-stack developer**, working mainly with _Next.js_, _Express_ and various types of _databases_.
+Once a **🥷 programming ninja**.
+Now a regular **🧑🏻‍💻 full-stack developer** mainly working on TypeScript projects.
 
-A former **🥷 coding ninja**, once wrote spaghetti in _PHP_ and _Vanilla JS_ or _Vue 2_.
+A big fan of **🎤 Vocaloid** and **🎸 J-pop**,
+and hopelessly addicted to **🎠 Furen** and **❤️‍🩹 Ishigami**.
 `

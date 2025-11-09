@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { cacheLife, cacheTag } from 'next/cache'
+
 import { isFullPage } from '@notionhq/client'
 
 import { notion } from '@/integrations/notion/client'
@@ -19,6 +21,10 @@ export const getPostList: PostService['getList'] = async ({
     limit = 100,
     cursor
 } = {}) => {
+    'use cache'
+    cacheLife('hours')
+    cacheTag('post')
+
     try {
         // Retrieve posts
         const { results, next_cursor } = await notion.dataSources.query({

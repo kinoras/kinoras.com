@@ -1,7 +1,5 @@
 import 'server-only'
 
-import { unstable_cache } from 'next/cache'
-
 import dayjs from 'dayjs'
 
 import { notNull } from '@/lib/utils'
@@ -13,30 +11,25 @@ import type { PartialProjectData } from '@/integrations/notion/project/utils'
 import type { ProjectData, ProjectService } from '@/types/project'
 
 export const Project: ProjectService = {
-    getList: (options) =>
-        unstable_cache(
-            async () => {
-                try {
-                    // Retrieve projects from Notion
-                    const { projects, nextCursor } = await getProjectList(options)
+    getList: async (options) => {
+        try {
+            // Retrieve projects from Notion
+            const { projects, nextCursor } = await getProjectList(options)
 
-                    // Fetch repository properties from GitHub
-                    const hydratedProjects = (await Promise.all(projects.map(hydrateProject)))
-                        .filter(notNull) // Exclude non-hydratable items
-                        .toSorted((a, b) => dayjs(b._date).unix() - dayjs(a._date).unix()) // Sort by creation date (newest first)
-                        .map(({ _date, ...proj }) => proj) // Remove the sorting helper property
+            // Fetch repository properties from GitHub
+            const hydratedProjects = (await Promise.all(projects.map(hydrateProject)))
+                .filter(notNull) // Exclude non-hydratable items
+                .toSorted((a, b) => dayjs(b._date).unix() - dayjs(a._date).unix()) // Sort by creation date (newest first)
+                .map(({ _date, ...proj }) => proj) // Remove the sorting helper property
 
-                    return {
-                        projects: hydratedProjects,
-                        nextCursor
-                    }
-                } catch (error) {
-                    return { projects: [], nextCursor: null }
-                }
-            }, // Fetcher
-            ['projects', JSON.stringify(options || {})], // Key
-            { revalidate: 3600, tags: ['projects'] } // TTL (1 hour) & tags
-        )()
+            return {
+                projects: hydratedProjects,
+                nextCursor
+            }
+        } catch (error) {
+            return { projects: [], nextCursor: null }
+        }
+    }
 }
 
 const hydrateProject = async (

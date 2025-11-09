@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { cacheLife, cacheTag } from 'next/cache'
+
 import { NotionToMarkdown } from 'notion-to-md'
 
 import type { PostService } from '@/types/post'
@@ -16,6 +18,10 @@ const n2m = new NotionToMarkdown({ notionClient: notion })
  * @returns A promise that resolves to the markdown content of the post, or null if the post is not found or an error occurred.
  */
 export const getPostContent: PostService['getContent'] = async (id) => {
+    'use cache'
+    cacheLife('hours')
+    cacheTag('post', `post-${id}`)
+    
     try {
         const page = await findPageWithPostId(id)
 

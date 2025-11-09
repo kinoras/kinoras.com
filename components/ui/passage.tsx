@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 
 import 'katex/dist/katex.min.css'
-import Markdown from 'react-markdown'
+import Markdown, { type Components } from 'react-markdown'
 import rehypeKatex from 'rehype-katex'
 import rehypeUnwrapImages from 'rehype-unwrap-images'
 import remarkGfm from 'remark-gfm'
@@ -58,7 +58,15 @@ const PassageTitle = ({ className, ...props }: ComponentProps<'h1'>) => {
     return <Heading1 data-slot="passage-title" className={cn('my-0', className)} {...props} />
 }
 
-const PassageBody = ({ className, content, ...props }: ComponentProps<'div'>) => {
+const PassageBody = ({
+    className,
+    content,
+    maps,
+    ...props
+}: ComponentProps<'div'> & {
+    /** Map tag names to components, overriding the default ones. */
+    maps?: Components
+}) => {
     return (
         <div className={cn('overflow-x-hidden', className)} {...props}>
             <Markdown
@@ -97,7 +105,9 @@ const PassageBody = ({ className, content, ...props }: ComponentProps<'div'>) =>
                     ),
                     table: ({ node, ...props }) => <Table {...props} />,
 
-                    hr: ({ node, ...props }) => <HorizontalRule {...props} />
+                    hr: ({ node, ...props }) => <HorizontalRule {...props} />,
+
+                    ...maps
                 }}
             >
                 {content}

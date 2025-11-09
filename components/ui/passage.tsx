@@ -73,19 +73,19 @@ const PassageBody = ({
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex, rehypeUnwrapImages]}
                 components={{
-                    h1: ({ node, ...props }) => <Heading2 {...props} />,
-                    h2: ({ node, ...props }) => <Heading3 {...props} />,
-                    h3: ({ node, ...props }) => <Heading4 {...props} />,
+                    h1: (props) => <Heading2 {...props} />,
+                    h2: (props) => <Heading3 {...props} />,
+                    h3: (props) => <Heading4 {...props} />,
 
-                    p: ({ node, ...props }) => <Paragraph {...props} />,
-                    a: ({ node, ...props }) => <Anchor {...props} />,
-                    strong: ({ node, ...props }) => <Strong {...props} />,
-                    blockquote: ({ node, ...props }) => <Blockquote {...props} />,
+                    p: (props) => <Paragraph {...props} />,
+                    a: (props) => <Anchor {...props} />,
+                    strong: (props) => <Strong {...props} />,
+                    blockquote: (props) => <Blockquote {...props} />,
 
-                    ul: ({ node, ...props }) => <UnorderedList {...props} />,
-                    ol: ({ node, ...props }) => <OrderedList {...props} />,
+                    ul: (props) => <UnorderedList {...props} />,
+                    ol: (props) => <OrderedList {...props} />,
 
-                    code: ({ node, children, ...props }) => {
+                    code: ({ children, ...props }) => {
                         const code = String(children).trim()
                         const match = props.className?.match(/language-(\w+)/)
                         const language = match?.[1]
@@ -97,15 +97,15 @@ const PassageBody = ({
                         )
                     },
 
-                    img: ({ node, alt, ...props }) => (
+                    img: ({ alt, ...props }) => (
                         <Figure>
                             <img alt={alt} {...props} />
                             <figcaption>{alt}</figcaption>
                         </Figure>
                     ),
-                    table: ({ node, ...props }) => <Table {...props} />,
+                    table: (props) => <Table {...props} />,
 
-                    hr: ({ node, ...props }) => <HorizontalRule {...props} />,
+                    hr: (props) => <HorizontalRule {...props} />,
 
                     ...maps
                 }}

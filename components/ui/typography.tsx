@@ -63,8 +63,6 @@ const Paragraph = ({ className, ...props }: ComponentProps<'p'>) => {
 const Anchor = ({
     styled = true,
     className,
-    target,
-    rel,
     ...props
 }: ComponentProps<'a'> & {
     /** Whether to apply preset styles. */

@@ -28,14 +28,3 @@ export const tags: Tags = [
         description: 'Once wrote wild spaghetti in PHP with Vanilla JS and Vue 2.'
     }
 ]
-
-export const profile: string = `
-Born and brought up in **🇲🇴 Macau**.
-Currently based in **🇹🇼 Taipei, Taiwan**.
-
-Once a **🥷 programming ninja**.
-Now a regular **🧑🏻‍💻 full-stack developer** mainly working on TypeScript projects.
-
-A big fan of **🎤 Vocaloid** and **🎸 J-pop**,
-and hopelessly addicted to **🎠 Furen** and **❤️‍🩹 Ishigami**.
-`

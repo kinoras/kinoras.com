@@ -2,9 +2,9 @@ import RotatingWords from '@/components/custom/rotating-words'
 import { Banner, BannerBar, BannerContent, BannerTitle } from '@/components/ui/banner'
 import { Section, SectionSeparator, SectionTitle } from '@/components/ui/section'
 
-import { profile } from '@/data/about-profile'
 import { rotatingWords } from '@/data/home-banner'
 import { contact } from '@/data/home-contact'
+import { profile } from '@/data/home-profile'
 import { work } from '@/data/home-work'
 
 import { HomePassage } from './components'

@@ -12,7 +12,7 @@ const PageFooter = ({ className, ...props }: ComponentProps<'footer'>) => {
             <div className="container">
                 <div className="flex items-center justify-between py-6">
                     <span className="text-secondary text-[15px]">© 2025 kinoRAS</span>
-                    <ul className="flex items-center gap-5 sm:gap-5">
+                    <ul className="flex items-center gap-5">
                         {links.map(({ icon: LinkIcon, href, title }) => (
                             <li key={href}>
                                 <Anchor

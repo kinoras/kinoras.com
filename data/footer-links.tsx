@@ -21,7 +21,7 @@ export const links: FooterLinks = [
     },
     {
         icon: IconBrandCodepen,
-        href: 'https://codepen.io/kinoras',
+        href: 'https://codepen.io/kinoRAS',
         title: 'CodePen'
     },
     {

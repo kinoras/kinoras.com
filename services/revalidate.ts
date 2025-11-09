@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { updateTag } from 'next/cache'
 
 import type { PostId } from '@/types/post'
 
@@ -15,17 +15,17 @@ export type RevalidateOptions = {
 }
 
 const revalidateAllPosts = () => {
-    revalidateTag('posts')
-    revalidateTag('post')
-    revalidateTag('post-content')
+    updateTag('posts')
+    updateTag('post')
+    updateTag('post-content')
 }
 
 const revalidateSinglePost = (id: PostId) => {
-    revalidateTag(`post-${id}`)
+    updateTag(`post-${id}`)
 }
 
 const revalidateAllProjects = () => {
-    revalidateTag('projects')
+    updateTag('projects')
 }
 
 export const revalidate = async (

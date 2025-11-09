@@ -9,13 +9,11 @@ import BlogPostSkeleton from './post-skeleton'
 
 type BlogPageProps = { params: Promise<{ id: string }> }
 
-const BlogPage = async ({ params }: BlogPageProps) => {
-    const { id } = await params
-
+const BlogPage = ({ params }: BlogPageProps) => {
     return (
         <main>
             <Suspense fallback={<BlogPostSkeleton length={4} />}>
-                <BlogPost id={id} />
+                <BlogPost id={params.then(({ id }) => id)} />
             </Suspense>
         </main>
     )
@@ -30,7 +28,5 @@ export const generateMetadata = async ({ params }: BlogPageProps): Promise<Metad
         description: meta?.description
     }
 }
-
-export const dynamic = 'force-dynamic'
 
 export default BlogPage

@@ -21,7 +21,8 @@ import { type RevalidateOptions, revalidate } from '@/services/revalidate'
 type FormValues = {
     secret: string
     revalidatePosts: boolean
-    revalidateProjects: boolean
+    revalidateNotionProjects: boolean
+    revalidateGithubProjects: boolean
 }
 
 export default function RevalidatePage() {
@@ -29,7 +30,8 @@ export default function RevalidatePage() {
         defaultValues: {
             secret: '',
             revalidatePosts: true,
-            revalidateProjects: true
+            revalidateNotionProjects: true,
+            revalidateGithubProjects: true
         }
     })
 
@@ -38,7 +40,8 @@ export default function RevalidatePage() {
             const options: RevalidateOptions = {}
 
             if (values.revalidatePosts) options.posts = { all: true }
-            if (values.revalidateProjects) options.projects = { all: true }
+            if (values.revalidateNotionProjects) options.notionProjects = { all: true }
+            if (values.revalidateGithubProjects) options.githubProjects = { all: true }
 
             await revalidate(values.secret, options)
 
@@ -96,7 +99,7 @@ export default function RevalidatePage() {
                                 )}
                             />
                             <Controller
-                                name="revalidateProjects"
+                                name="revalidateNotionProjects"
                                 control={control}
                                 render={({ field: { name, value, onChange } }) => (
                                     <Field orientation="horizontal">
@@ -107,7 +110,24 @@ export default function RevalidatePage() {
                                             onCheckedChange={onChange}
                                         />
                                         <FieldLabel htmlFor="scope-projects">
-                                            Projects
+                                            Projects (Notion)
+                                        </FieldLabel>
+                                    </Field>
+                                )}
+                            />
+                            <Controller
+                                name="revalidateGithubProjects"
+                                control={control}
+                                render={({ field: { name, value, onChange } }) => (
+                                    <Field orientation="horizontal">
+                                        <Checkbox
+                                            id="scope-projects"
+                                            name={name}
+                                            checked={value}
+                                            onCheckedChange={onChange}
+                                        />
+                                        <FieldLabel htmlFor="scope-projects">
+                                            Projects (GitHub)
                                         </FieldLabel>
                                     </Field>
                                 )}

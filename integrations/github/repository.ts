@@ -6,8 +6,8 @@ export const getRepositoryInfo = async (
     repository: string
 ): Promise<RepositoryResponse | null> => {
     'use cache'
-    cacheLife('hours')
-    cacheTag('projects')
+    cacheLife('days')
+    cacheTag('projects', 'projects-github')
 
     try {
         const response = await fetch(`https://api.github.com/repos/${repository}`, {

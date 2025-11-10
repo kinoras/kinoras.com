@@ -11,7 +11,8 @@ export type RevalidateOptions = {
         | { all: false; items: PostId[] } // Revalidate selected posts
 
     /** Projects to be revalidated */
-    projects?: { all: true } // Revalidate all projects
+    notionProjects?: { all: true } // Revalidate all projects on Notion
+    githubProjects?: { all: true } // Revalidate all projects on GitHub
 }
 
 const revalidateAllPosts = () => {
@@ -24,8 +25,12 @@ const revalidateSinglePost = (id: PostId) => {
     updateTag(`post-${id}`)
 }
 
-const revalidateAllProjects = () => {
-    updateTag('projects')
+const revalidateAllNotionProjects = () => {
+    updateTag('projects-notion')
+}
+
+const revalidateAllGithubProjects = () => {
+    updateTag('projects-github')
 }
 
 export const revalidate = async (
@@ -45,7 +50,10 @@ export const revalidate = async (
     }
 
     // Projects
-    if (options.projects) {
-        revalidateAllProjects()
+    if (options.notionProjects) {
+        revalidateAllNotionProjects()
+    }
+    if (options.githubProjects) {
+        revalidateAllGithubProjects()
     }
 }

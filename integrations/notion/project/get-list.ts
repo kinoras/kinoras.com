@@ -23,7 +23,7 @@ export const getProjectList = async ({
 }: Partial<ProjectListQueryOptions> = {}) => {
     'use cache'
     cacheLife('hours')
-    cacheTag('projects')
+    cacheTag('projects', 'projects-notion')
 
     try {
         // Retrieve projects

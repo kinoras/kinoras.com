@@ -15,13 +15,13 @@ export type Timeline = {
 
 export const timeline: Timeline = [
     {
-        icon: <Image src="/assets/ntu.png" alt="National Taiwan University" />,
+        icon: <Image src="/assets/ntu.webp" alt="National Taiwan University" />,
         title: 'Studied in National Taiwan University',
         period: '09/2021 - 07/2025',
         description: 'Bachelor of Computer Science and Information Engineering (CSIE).'
     },
     {
-        icon: <Image src="/assets/worldskills.png" alt="WorldSkills" />,
+        icon: <Image src="/assets/worldskills.webp" alt="WorldSkills" />,
         title: 'Participated in WorldSkills Kazan 2019',
         period: '08/2019',
         description: `Competitor and silver medalist in Web Technologies (Junior), representing Macau.`

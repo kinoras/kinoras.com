@@ -3,6 +3,7 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 
 import { RepoBadge } from '@/components/custom/anchor-badges'
+import SmartImage from '@/components/custom/smart-image'
 import { Badge } from '@/components/ui/badge'
 import { Feed, FeedDescription, FeedEntry, FeedMedia, FeedTitle } from '@/components/ui/feed'
 
@@ -34,10 +35,13 @@ const BlogsPosts = async () => {
                     {/* Media block */}
                     <FeedMedia className={blockStyles.media}>
                         {cover && (
-                            <img
+                            <SmartImage
                                 className="size-full object-cover"
                                 src={cover.url}
                                 alt={title ?? cover.name}
+                                fallback='/fallbacks/blog-cover.svg'
+                                height={90}
+                                width={160}
                             />
                         )}
                     </FeedMedia>

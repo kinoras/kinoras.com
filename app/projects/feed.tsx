@@ -1,6 +1,7 @@
 import { ComponentProps } from 'react'
 
 import { DemoBadge, RepoBadge } from '@/components/custom/anchor-badges'
+import SmartImage from '@/components/custom/smart-image'
 import { Feed, FeedDescription, FeedEntry, FeedMedia, FeedTitle } from '@/components/ui/feed'
 
 import { cn, isFile } from '@/lib/utils'
@@ -42,17 +43,25 @@ const ProjectsFeed = async ({
                         {/* Project hero */}
                         <FeedMedia className={blockStyles.media.hero}>
                             {isFile(hero) ? (
-                                <img src={hero.url} alt={`Hero image of ${repository.name}`} />
+                                <SmartImage
+                                    src={hero.url}
+                                    alt={`Hero image of ${repository.name}`}
+                                    fallback="/fallbacks/project-hero.svg"
+                                    height={80}
+                                    width={80}
+                                />
                             ) : (
                                 <span>{hero}</span>
                             )}
                         </FeedMedia>
                         {/* Owner's avatar */}
                         {showItemAvatar && (
-                            <img
+                            <SmartImage
                                 className={blockStyles.media.avatar}
                                 src={repository.owner.avatar}
-                                alt={`Owned by ${repository.owner.name}`}
+                                alt={`Avatar of ${repository.owner.name}`}
+                                height={32}
+                                width={32}
                             />
                         )}
                     </div>

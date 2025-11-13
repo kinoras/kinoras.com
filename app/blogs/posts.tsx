@@ -39,7 +39,7 @@ const BlogsPosts = async () => {
                                 className="size-full object-cover"
                                 src={cover.url}
                                 alt={title ?? cover.name}
-                                fallback='/fallbacks/blog-cover.svg'
+                                fallback="/fallbacks/blog-cover.svg"
                                 height={90}
                                 width={160}
                             />

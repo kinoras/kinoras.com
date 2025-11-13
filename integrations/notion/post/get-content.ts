@@ -21,7 +21,7 @@ export const getPostContent: PostService['getContent'] = async (id) => {
     'use cache'
     cacheLife('hours')
     cacheTag('post', `post-${id}`)
-    
+
     try {
         const page = await findPageWithPostId(id)
 

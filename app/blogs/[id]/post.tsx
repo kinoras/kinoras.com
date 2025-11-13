@@ -63,7 +63,7 @@ const BlogPost = async ({ id }: { id: Promise<PostId> }) => {
                             <SmartImage
                                 src={String(src)}
                                 alt={alt ?? ''}
-                                fallback='/fallbacks/blog-media.svg'
+                                fallback="/fallbacks/blog-media.svg"
                                 height={200}
                                 width={832}
                                 {...props}

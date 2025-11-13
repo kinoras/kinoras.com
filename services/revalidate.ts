@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { updateTag } from 'next/cache'
 
 import type { PostId } from '@/types/post'
 
@@ -11,21 +11,26 @@ export type RevalidateOptions = {
         | { all: false; items: PostId[] } // Revalidate selected posts
 
     /** Projects to be revalidated */
-    projects?: { all: true } // Revalidate all projects
+    notionProjects?: { all: true } // Revalidate all projects on Notion
+    githubProjects?: { all: true } // Revalidate all projects on GitHub
 }
 
 const revalidateAllPosts = () => {
-    revalidateTag('posts')
-    revalidateTag('post')
-    revalidateTag('post-content')
+    updateTag('posts')
+    updateTag('post')
+    updateTag('post-content')
 }
 
 const revalidateSinglePost = (id: PostId) => {
-    revalidateTag(`post-${id}`)
+    updateTag(`post-${id}`)
 }
 
-const revalidateAllProjects = () => {
-    revalidateTag('projects')
+const revalidateAllNotionProjects = () => {
+    updateTag('projects-notion')
+}
+
+const revalidateAllGithubProjects = () => {
+    updateTag('projects-github')
 }
 
 export const revalidate = async (
@@ -45,7 +50,10 @@ export const revalidate = async (
     }
 
     // Projects
-    if (options.projects) {
-        revalidateAllProjects()
+    if (options.notionProjects) {
+        revalidateAllNotionProjects()
+    }
+    if (options.githubProjects) {
+        revalidateAllGithubProjects()
     }
 }

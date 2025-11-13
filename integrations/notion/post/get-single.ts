@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { cacheLife, cacheTag } from 'next/cache'
+
 import type { PostService } from '@/types/post'
 
 import { findPageWithPostId, notionPageToPost } from './utils'
@@ -11,6 +13,9 @@ import { findPageWithPostId, notionPageToPost } from './utils'
  * @returns A promise that resolves to the post data, or null if the post is not found or an error occurred.
  */
 export const getSinglePost: PostService['getSingle'] = async (id) => {
+    'use cache'
+    cacheLife('hours')
+    cacheTag('post', `post-${id}`)
     try {
         const page = await findPageWithPostId(id)
 

@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import type { Metadata } from 'next'
 import { ThemeProvider } from 'next-themes'
 import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
@@ -52,7 +54,9 @@ export default function RootLayout({
                         zIndex={20}
                         showSpinner={false}
                     />
-                    <Header />
+                    <Suspense>
+                        <Header />
+                    </Suspense>
                     {children}
                     <Footer />
                 </ThemeProvider>

@@ -4,15 +4,20 @@ import { notFound } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { RepoBadge } from '@/components/custom/anchor-badges'
+import SmartImage from '@/components/custom/smart-image'
 import { Badge } from '@/components/ui/badge'
 import { Passage, PassageBody, PassageHeader, PassageTitle } from '@/components/ui/passage'
+import { Figure } from '@/components/ui/typography'
 
 import { Post } from '@/services/post'
 
 import type { PostId } from '@/types/post'
 
-const BlogPost = async ({ id }: { id: PostId }) => {
-    const [meta, content] = await Promise.all([Post.getSingle(id), Post.getContent(id)])
+const BlogPost = async ({ id }: { id: Promise<PostId> }) => {
+    const [meta, content] = await Promise.all([
+        Post.getSingle(await id),
+        Post.getContent(await id)
+    ])
 
     if (!meta || content === null) {
         notFound()
@@ -50,7 +55,24 @@ const BlogPost = async ({ id }: { id: PostId }) => {
             </PassageHeader>
 
             {/* Content */}
-            <PassageBody content={content} />
+            <PassageBody
+                content={content}
+                maps={{
+                    img: ({ src, alt, height, width, ...props }) => (
+                        <Figure>
+                            <SmartImage
+                                src={String(src)}
+                                alt={alt ?? ''}
+                                fallback="/fallbacks/blog-media.svg"
+                                height={200}
+                                width={832}
+                                {...props}
+                            />
+                            <figcaption>{alt}</figcaption>
+                        </Figure>
+                    )
+                }}
+            />
         </Passage>
     )
 }

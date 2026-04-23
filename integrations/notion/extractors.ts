@@ -64,6 +64,8 @@ export class PropertyExtractor {
                     name: icon.custom_emoji.name,
                     url: icon.custom_emoji.url
                 }
+            default:
+                return null
         }
     }
 

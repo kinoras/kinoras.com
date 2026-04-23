@@ -1,17 +1,25 @@
 import type { ComponentProps } from 'react'
 
+import dayjs from 'dayjs'
+
 import { Anchor } from '@/components/ui/typography'
 
 import { cn } from '@/lib/utils'
 
 import { links } from '@/data/footer-links'
 
-const PageFooter = ({ className, ...props }: ComponentProps<'footer'>) => {
+const getYear = async () => {
+    'use cache'
+    return dayjs().year()
+}
+
+const PageFooter = async ({ className, ...props }: ComponentProps<'footer'>) => {
+    const year = await getYear()
     return (
         <footer className={cn('wrapper border-border mt-6 border-t', className)} {...props}>
             <div className="container">
                 <div className="flex items-center justify-between py-6">
-                    <span className="text-secondary text-[15px]">© 2025 kinoRAS</span>
+                    <span className="text-secondary text-[15px]">© {year} kinoRAS</span>
                     <ul className="flex items-center gap-5">
                         {links.map(({ icon: LinkIcon, href, title }) => (
                             <li key={href}>

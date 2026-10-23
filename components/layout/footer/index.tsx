@@ -16,10 +16,10 @@ const getYear = async () => {
 const PageFooter = async ({ className, ...props }: ComponentProps<'footer'>) => {
     const year = await getYear()
     return (
-        <footer className={cn('wrapper border-border mt-6 border-t', className)} {...props}>
+        <footer className={cn('wrapper mt-6 border-t border-border', className)} {...props}>
             <div className="container">
                 <div className="flex items-center justify-between py-6">
-                    <span className="text-secondary text-[15px]">© {year} kinoRAS</span>
+                    <span className="text-[15px] text-secondary">© {year} kinoRAS</span>
                     <ul className="flex items-center gap-5">
                         {links.map(({ icon: LinkIcon, href, title }) => (
                             <li key={href}>

@@ -27,7 +27,7 @@ const FeedMedia = ({ className, ...props }: ComponentProps<'div'>) => {
         <div
             data-slot="newsfeed-entry-media"
             className={cn(
-                'bg-accent/50 overflow-hidden',
+                'overflow-hidden bg-accent/50',
                 '[&_span,img,video]:transition [&_span,img,video]:duration-400 group-hover/feed:[&_span,img,video]:scale-105', // Scale the media when entry hovered
                 className
             )}
@@ -43,7 +43,7 @@ const FeedTitle = ({ className, ...props }: ComponentProps<'h3'>) => {
             className={cn(
                 'text-lg leading-snug font-medium sm:text-xl sm:leading-normal',
                 '[&>a]:before:absolute [&>a]:before:inset-0 [&>a]:before:z-1', // Extend the anchor area to the entire entry
-                '[&>a]:hover:decoration-secondary [&>a]:underline [&>a]:decoration-transparent [&>a]:underline-offset-4 [&>a]:transition-all', // Hover effect
+                '[&>a]:underline [&>a]:decoration-transparent [&>a]:underline-offset-4 [&>a]:transition-all [&>a]:hover:decoration-secondary', // Hover effect
                 className
             )}
             {...props}
@@ -55,7 +55,7 @@ const FeedDescription = ({ className, ...props }: ComponentProps<'p'>) => {
     return (
         <p
             data-slot="newsfeed-entry-description"
-            className={cn('text-secondary leading-snug sm:leading-normal', className)}
+            className={cn('leading-snug text-secondary sm:leading-normal', className)}
             {...props}
         />
     )

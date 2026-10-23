@@ -17,16 +17,16 @@ const TimelineItem = ({
         <li
             data-slot="timeline-item"
             className={cn(
-                'border-border relative ml-5.5 border-l pt-px pl-10',
+                'relative ml-5.5 border-l border-border pt-px pl-10',
                 'flex flex-col gap-1.5 **:leading-tight', // Inner layout
                 'before:absolute before:top-0 before:-left-1.5 before:mt-1.5 before:size-3 sm:before:mt-2', // Icon placeholder: position
-                'before:bg-border before:ring-background before:rounded-full before:ring-4', // Icon placeholder: appearance
+                'before:rounded-full before:bg-border before:ring-4 before:ring-background', // Icon placeholder: appearance
                 variant === 'extensive' && 'not-last:pb-8',
                 variant === 'clear' && 'border-transparent not-last:pb-8',
                 variant === 'inclusive' && [
                     'mb-4.5 pb-3.5',
                     'after:absolute after:bottom-0 after:left-0 after:h-20 after:w-8', // Pseudo element for boundary curve
-                    'after:border-border after:border-b [&,&:after]:rounded-bl-xl' // Rounded inclusive border
+                    'after:border-b after:border-border [&,&:after]:rounded-bl-xl' // Rounded inclusive border
                 ],
                 className
             )}
@@ -41,7 +41,7 @@ const TimelineIcon = ({ className, ...props }: ComponentProps<'div'>) => {
             data-slot="timeline-icon"
             className={cn(
                 'absolute top-0 -left-6 size-12', // Position
-                'border-border ring-background bg-border rounded-full border ring-4', // Appearance
+                'rounded-full border border-border bg-border ring-4 ring-background', // Appearance
                 'flex items-center justify-center overflow-hidden', // Layout
                 'text-3xl [&>img]:size-11.5 [&>img]:object-cover [&>svg]:size-8', // Icon elements
                 className

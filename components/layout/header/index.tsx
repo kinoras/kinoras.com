@@ -31,7 +31,7 @@ const PageHeader = ({ className, ...props }: ComponentProps<typeof Header>) => {
     const pathname = usePathname()
     return (
         <Header
-            className={cn('supports-backdrop-filter:bg-background/75 backdrop-blur', className)}
+            className={cn('backdrop-blur supports-backdrop-filter:bg-background/75', className)}
             {...props}
         >
             <HeaderNav>

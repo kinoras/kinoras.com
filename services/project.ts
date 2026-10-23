@@ -26,7 +26,7 @@ export const Project: ProjectService = {
                 projects: hydratedProjects,
                 nextCursor
             }
-        } catch (error) {
+        } catch {
             return { projects: [], nextCursor: null }
         }
     }

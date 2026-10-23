@@ -33,7 +33,7 @@ export const getPostContent: PostService['getContent'] = async (id) => {
         const mdString = n2m.toMarkdownString(mdBlocks)
 
         return mdString.parent
-    } catch (error) {
+    } catch {
         return null
     }
 }

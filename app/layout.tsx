@@ -36,7 +36,7 @@ export default function RootLayout({
                     latinSans.variable,
                     latinMono.variable,
                     cjkSans.variable,
-                    'bg-background text-primary font-sans',
+                    'bg-background font-sans text-primary',
                     'flex min-h-svh flex-col [&>main]:flex-1',
                     'antialiased'
                 )}

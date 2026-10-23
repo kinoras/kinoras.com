@@ -44,7 +44,7 @@ export const getPostList: PostService['getList'] = async ({
             posts,
             nextCursor: next_cursor
         }
-    } catch (error) {
+    } catch {
         return {
             posts: [],
             nextCursor: null

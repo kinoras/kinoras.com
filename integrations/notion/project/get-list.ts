@@ -45,7 +45,7 @@ export const getProjectList = async ({
             projects,
             nextCursor: next_cursor
         }
-    } catch (error) {
+    } catch {
         return {
             projects: [],
             nextCursor: null

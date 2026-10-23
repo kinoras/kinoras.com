@@ -12,10 +12,10 @@ const Checkbox = ({ className, ...props }: ComponentProps<typeof CheckboxPrimiti
         <CheckboxPrimitive.Root
             data-slot="checkbox"
             className={cn(
-                'peer border-accent dark:bg-accent/30 size-4 shrink-0 rounded-sm border shadow-xs transition-shadow outline-none',
-                'focus-visible:ring-border/50 focus-visible:ring-[3px]', // Focus
-                'aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 aria-invalid:border-danger', // Invalid
-                'data-[state=checked]:bg-primary data-[state=checked]:text-background dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary', // Checked
+                'peer size-4 shrink-0 rounded-sm border border-accent shadow-xs transition-shadow outline-none dark:bg-accent/30',
+                'focus-visible:ring-[3px] focus-visible:ring-border/50', // Focus
+                'aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40', // Invalid
+                'data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-background dark:data-[state=checked]:bg-primary', // Checked
                 'disabled:cursor-not-allowed disabled:opacity-50', // Disabled
                 className
             )}

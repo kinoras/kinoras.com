@@ -19,7 +19,7 @@ export const getRepositoryInfo = async (
         }
 
         return await response.json()
-    } catch (error) {
+    } catch {
         return null
     }
 }

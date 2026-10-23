@@ -9,6 +9,7 @@ const SmartImage = ({
     /** Fallback src if the main src fails to load. */
     fallback,
     src,
+    alt,
     ...restProps
 }: ComponentProps<typeof Image> & {
     fallback?: typeof src
@@ -21,6 +22,7 @@ const SmartImage = ({
 
     return (
         <Image
+            alt={alt}
             src={error && fallback ? fallback : src} // Show fallback on src load error if provided
             onError={() => setError(true)}
             {...restProps}

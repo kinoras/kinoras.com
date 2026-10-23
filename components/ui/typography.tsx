@@ -57,7 +57,7 @@ const Heading4 = ({ className, ...props }: ComponentProps<'h4'>) => {
 /* Text */
 
 const Paragraph = ({ className, ...props }: ComponentProps<'p'>) => {
-    return <p className={cn('text-primary/95 mb-5 leading-relaxed', className)} {...props} />
+    return <p className={cn('mb-5 leading-relaxed text-primary/95', className)} {...props} />
 }
 
 const Anchor = ({
@@ -72,7 +72,7 @@ const Anchor = ({
         <a
             className={cn(
                 styled && [
-                    'text-theme font-medium transition-all',
+                    'font-medium text-theme transition-all',
                     'hover:brightness-95 dark:hover:brightness-105', // Highlight on hover
                     'decoration-theme underline-offset-3 hover:underline' // Underline on hover
                 ],
@@ -86,13 +86,13 @@ const Anchor = ({
 }
 
 const Strong = ({ className, ...props }: ComponentProps<'strong'>) => {
-    return <strong className={cn('text-primary font-semibold', className)} {...props} />
+    return <strong className={cn('font-semibold text-primary', className)} {...props} />
 }
 
 const Blockquote = ({ className, ...props }: ComponentProps<'blockquote'>) => {
     return (
         <blockquote
-            className={cn('border-border mt-6 border-l-2 pl-4 italic', className)}
+            className={cn('mt-6 border-l-2 border-border pl-4 italic', className)}
             {...props}
         />
     )
@@ -133,7 +133,7 @@ const InlineCode = ({ className, ...props }: ComponentProps<'code'>) => {
         <code
             className={cn(
                 'font-mono! text-[15px] font-normal', // Font
-                'bg-float/40 dark:bg-float/50 rounded-md px-1.5 py-0.5', // Background
+                'rounded-md bg-float/40 px-1.5 py-0.5 dark:bg-float/50', // Background
                 className
             )}
             {...props}
@@ -145,7 +145,7 @@ const BlockCode = ({ className, ...props }: ComponentProps<typeof SyntaxHighligh
     return (
         <SyntaxHighlighter
             className={cn(
-                'bg-float/40 mb-5 overflow-x-auto rounded-lg px-4 py-3', // Spacing & styling
+                'mb-5 overflow-x-auto rounded-lg bg-float/40 px-4 py-3', // Spacing & styling
                 'font-medium [&_code]:font-mono [&_code]:text-[15px]', // Font
                 className
             )}
@@ -160,9 +160,9 @@ const Figure = ({ className, ...props }: ComponentProps<'figure'>) => {
     return (
         <figure
             className={cn(
-                '**:border-border mb-5 flex flex-col gap-2 pt-1', // Layout
-                '[&_img]:bg-accent/50 [&_img]:max-h-[75vh] [&_img]:rounded-lg [&_img]:border [&_img]:object-contain', // Image
-                '[&_figcaption]:text-secondary [&_figcaption]:text-sm [&_figcaption]:leading-relaxed', // Caption
+                'mb-5 flex flex-col gap-2 pt-1 **:border-border', // Layout
+                '[&_img]:max-h-[75vh] [&_img]:rounded-lg [&_img]:border [&_img]:bg-accent/50 [&_img]:object-contain', // Image
+                '[&_figcaption]:text-sm [&_figcaption]:leading-relaxed [&_figcaption]:text-secondary', // Caption
                 className
             )}
             {...props}
@@ -183,7 +183,7 @@ const Table = ({
         <div
             className={cn(
                 'mb-5 overflow-x-auto', // Layout
-                '**:border-border border-border rounded-lg border', // Border
+                'rounded-lg border border-border **:border-border', // Border
                 wrapperClassname
             )}
         >
@@ -205,7 +205,7 @@ const Table = ({
 /* Other */
 
 const HorizontalRule = ({ className, ...props }: ComponentProps<'hr'>) => {
-    return <hr className={cn('border-border my-6 sm:my-8 lg:my-10', className)} {...props} />
+    return <hr className={cn('my-6 border-border sm:my-8 lg:my-10', className)} {...props} />
 }
 
 export {

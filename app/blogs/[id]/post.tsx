@@ -58,15 +58,16 @@ const BlogPost = async ({ id }: { id: Promise<PostId> }) => {
             <PassageBody
                 content={content}
                 maps={{
-                    img: ({ src, alt, height, width, ...props }) => (
+                    img: ({ src, alt, ...props }) => (
                         <Figure>
                             <SmartImage
                                 src={String(src)}
                                 alt={alt ?? ''}
                                 fallback="/fallbacks/blog-media.svg"
+                                {...props}
+                                // Override the provided size
                                 height={200}
                                 width={832}
-                                {...props}
                             />
                             <figcaption>{alt}</figcaption>
                         </Figure>

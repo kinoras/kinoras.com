@@ -21,7 +21,7 @@ export default function Home() {
                         <RotatingWords className="w-full" delay={150}>
                             {...rotatingWords}
                             <span>
-                                am <b className="text-theme font-medium">kinoRAS</b>.
+                                am <b className="font-medium text-theme">kinoRAS</b>.
                             </span>
                         </RotatingWords>
                     </BannerTitle>

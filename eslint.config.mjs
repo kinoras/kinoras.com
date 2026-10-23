@@ -5,6 +5,9 @@ const eslintConfig = [
     ...nextVitals,
     ...nextTypeScript,
     {
+        rules: { '@next/next/no-img-element': 'off' }
+    },
+    {
         files: ['components/custom/smart-image.tsx'],
         rules: { 'react-hooks/set-state-in-effect': 'warn' }
     },

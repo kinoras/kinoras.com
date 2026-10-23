@@ -25,7 +25,7 @@ export const getSinglePost: PostService['getSingle'] = async (id) => {
         const post = notionPageToPost(page)
 
         return post
-    } catch (error) {
+    } catch {
         return null
     }
 }

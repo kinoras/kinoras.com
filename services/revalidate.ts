@@ -44,9 +44,11 @@ export const revalidate = async (
 
     // Posts
     if (options.posts) {
-        options.posts.all
-            ? revalidateAllPosts()
-            : options.posts.items.forEach((id) => revalidateSinglePost(id))
+        if (options.posts.all) {
+            revalidateAllPosts()
+        } else {
+            options.posts.items.forEach((id) => revalidateSinglePost(id))
+        }
     }
 
     // Projects

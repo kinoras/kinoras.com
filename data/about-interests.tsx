@@ -18,7 +18,9 @@ export const interests: InterestGroup[] = [
             'Perfume',
             'YOASOBI',
             'Yorushika',
-            <span className="proportional">『Yuika』</span>
+            <span key="yuika" className="proportional">
+                『Yuika』
+            </span>
         ]
     },
     {

@@ -59,7 +59,7 @@ const AboutPage = () => {
                         <TimelineItem key={index}>
                             {icon && <TimelineIcon>{icon}</TimelineIcon>}
                             <h3 className="mt-px text-lg font-medium sm:text-xl">{title}</h3>
-                            <span className="text-secondary text-sm">{period}</span>
+                            <span className="text-sm text-secondary">{period}</span>
                             {description && <p className="text-secondary">{description}</p>}
                         </TimelineItem>
                     ))}
@@ -75,7 +75,7 @@ const AboutPage = () => {
                         <TimelineItem variant="inclusive" key={name}>
                             <TimelineIcon className="rounded-xl">{icon}</TimelineIcon>
                             <h3 className="mt-px text-lg font-medium sm:text-xl">{name}</h3>
-                            <ul className="text-secondary leading-snug!">
+                            <ul className="leading-snug! text-secondary">
                                 {items.map((item, index) => (
                                     <li
                                         className="mt-0.5 not-last:mb-1.5 after:opacity-50 sm:inline sm:not-last:after:content-['_/_']"

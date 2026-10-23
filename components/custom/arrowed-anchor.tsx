@@ -9,7 +9,7 @@ const ArrowedAnchor = ({ children, ...restProps }: ComponentProps<typeof Anchor>
         <Anchor styled={false} {...restProps}>
             {children}
             <IconArrowUpRight
-                className="text-primary -mr-0.5 -ml-px inline size-[.875em] -translate-y-7/24 opacity-50"
+                className="-mr-0.5 -ml-px inline size-[.875em] -translate-y-7/24 text-primary opacity-50"
                 strokeWidth={2}
             />
         </Anchor>

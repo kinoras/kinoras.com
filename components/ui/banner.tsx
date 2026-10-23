@@ -52,7 +52,7 @@ const BannerDescription = ({ className, ...props }: ComponentProps<'p'>) => {
         <p
             data-slot="banner-description"
             className={cn(
-                'text-secondary leading-snug!', // Text styles
+                'leading-snug! text-secondary', // Text styles
                 'text-md sm:text-lg', // Font size
                 className
             )}
@@ -65,7 +65,7 @@ const BannerBar = ({ className, ...props }: ComponentProps<'span'>) => {
     return (
         <span
             className={cn(
-                'bg-theme/85 h-1 w-8 sm:w-10',
+                'h-1 w-8 bg-theme/85 sm:w-10',
                 'mt-6 -mb-6 sm:mt-8 md:mt-10', // Vertical spacing
                 className
             )}
@@ -103,7 +103,7 @@ const BannerIconBackground = ({
         >
             <BackgroundIcon
                 className={cn(
-                    'text-theme inset-y-0 right-0',
+                    'inset-y-0 right-0 text-theme',
                     'size-44 translate-x-5',
                     'sm:size-48 sm:translate-x-5.5',
                     'md:size-56 md:translate-x-6',

@@ -22,7 +22,7 @@ const Header = ({
         <header
             data-slot="header"
             className={cn(
-                'border-border bg-background wrapper h-header-height sticky top-0 z-10',
+                'wrapper sticky top-0 z-10 h-header-height border-border bg-background',
                 withBorder && 'border-b',
                 className
             )}
@@ -98,7 +98,7 @@ const HeaderNavLink = ({
                     <span
                         className={cn(
                             'hidden text-base font-normal transition-all sm:block',
-                            active && 'text-theme font-bold'
+                            active && 'font-bold text-theme'
                         )}
                     >
                         {title}

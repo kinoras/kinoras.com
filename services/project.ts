@@ -19,8 +19,7 @@ export const Project: ProjectService = {
             // Fetch repository properties from GitHub
             const hydratedProjects = (await Promise.all(projects.map(hydrateProject)))
                 .filter(notNull) // Exclude non-hydratable items
-                .toSorted((a, b) => dayjs(b._date).unix() - dayjs(a._date).unix()) // Sort by creation date (newest first)
-                .map(({ _date, ...proj }) => proj) // Remove the sorting helper property
+                .toSorted((a, b) => b.repository.createdAt - a.repository.createdAt) // Sort by creation date (newest first)
 
             return {
                 projects: hydratedProjects,
@@ -32,9 +31,7 @@ export const Project: ProjectService = {
     }
 }
 
-const hydrateProject = async (
-    project: PartialProjectData
-): Promise<(ProjectData & { _date: string }) | null> => {
+const hydrateProject = async (project: PartialProjectData): Promise<ProjectData | null> => {
     // Validate project content
     if (!project.repository) return null
 
@@ -54,9 +51,9 @@ const hydrateProject = async (
                 name: repository.owner.login,
                 avatar: repository.owner.avatar_url
             },
-            url: repository.html_url
+            url: repository.html_url,
+            createdAt: dayjs(repository.created_at).unix()
         },
-        deployment: repository.homepage,
-        _date: repository.created_at
+        deployment: repository.homepage
     }
 }

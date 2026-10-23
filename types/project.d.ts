@@ -14,6 +14,8 @@ export type ProjectData = {
         name: string
         owner: { name: string; avatar: string }
         url: string
+        /** Creation timestamp of the repository. */
+        createdAt: number
     }
     /** Deployment URL */
     deployment: string | null

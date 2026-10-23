@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react'
+import { isValidElement } from 'react'
 
 import 'katex/dist/katex.min.css'
 import Markdown, { type Components } from 'react-markdown'
@@ -84,6 +85,15 @@ const PassageBody = ({
 
                     ul: (props) => <UnorderedList {...props} />,
                     ol: (props) => <OrderedList {...props} />,
+
+                    pre: ({ children }) => {
+                        // The highlighter supplies its own pre; retain Markdown's for plain code.
+                        const highlighted =
+                            isValidElement<{ className?: string }>(children) &&
+                            /language-(\w+)/.test(children.props.className ?? '')
+
+                        return highlighted ? <>{children}</> : <pre>{children}</pre>
+                    },
 
                     code: ({ children, ...props }) => {
                         const code = String(children).trim()
